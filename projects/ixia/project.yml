@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: ETSI Plugtest IXIA
+  maintainer: Alberto Rocha, Altice Labs (alberto-m-rocha@alticelabs.com)
+  name: "etsi-ixia"
+  vendor: "keysight"
+  version: "0.1"
+version: '0.1'
