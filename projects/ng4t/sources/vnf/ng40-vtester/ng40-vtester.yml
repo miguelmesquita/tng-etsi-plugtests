@@ -1,0 +1,249 @@
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "ng4t"
+name: "ng40-vtester"
+version: "0.1"
+author: "Carlos Parada :@ Altice Labs"
+description: "NG40 vTester"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vran"
+    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 16
+        size_unit: "GB"
+    connection_points:
+      - id: "s1mme"
+        interface: "ipv4"
+        type: "internal"
+      - id: "s1u"
+        interface: "ipv4"
+        type: "internal"
+      - id: "sgi"
+        interface: "ipv4"
+        type: "internal"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vmme"
+    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 16
+        size_unit: "GB"
+    connection_points:
+      - id: "s1mme"
+        interface: "ipv4"
+        type: "internal"
+      - id: "s11"
+        interface: "ipv4"
+        type: "internal"
+      - id: "dia"
+        interface: "ipv4"
+        type: "internal"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vsgw"
+    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 16
+        size_unit: "GB"
+    connection_points:
+      - id: "s1u"
+        interface: "ipv4"
+        type: "internal"
+      - id: "s11"
+        interface: "ipv4"
+        type: "internal"
+      - id: "s5"
+        interface: "ipv4"
+        type: "internal"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vpgw"
+    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 16
+        size_unit: "GB"
+    connection_points:
+      - id: "s5"
+        interface: "ipv4"
+        type: "internal"
+      - id: "dia"
+        interface: "ipv4"
+        type: "internal"
+      - id: "sgi"
+        interface: "ipv4"
+        type: "internal"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "hss"
+    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 16
+        size_unit: "GB"
+    connection_points:
+      - id: "dia"
+        interface: "ipv4"
+        type: "internal"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "pcrf"
+    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 16
+        size_unit: "GB"
+    connection_points:
+      - id: "dia"
+        interface: "ipv4"
+        type: "internal"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "oss"
+    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 16
+        size_unit: "GB"
+    connection_points:
+      - id: "dia"
+        interface: "ipv4"
+        type: "internal"
+
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "S11"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vmme:s11"
+      - "vsgw:s11"
+      - "cps11"
+  - id: "S1-MME"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vran:s1mme"
+      - "vmme:s1mme"
+      - "cps1mme"
+  - id: "S1-U"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vran:s1u"
+      - "vsgw:s1u"
+      - "cps1u"
+  - id: "S5"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vpgw:s5"
+      - "vsgw:s5"
+      - "cps5"
+  - id: "DIA"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vpgw:dia"
+      - "vmme:dia"
+      - "vhss:dia"
+      - "vpcrf:dia"
+      - "vocs:dia"
+      - "cpdia"
+  - id: "SGi"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vpgw:sgi"
+      - "vran:sgi"
+      - "cpsgi"
+
+##
+## The VNF connection points to the
+## outside world.
+##
+connection_points:
+#  - id: "cpmgmt"
+#    interface: "ipv4"
+#    type: "management"
+#  - id: "cpwest"
+#    interface: "ipv4"
+#    type: "external"
+#  - id: "cpeast"
+#    interface: "ipv4"
+#    type: "external"
+
+#function_specific_managers:
+#  - id: "sonfsmplugtestng4tcss1"
+#    description: "FSM to do a first FSM test"
+#    image: "sonatanfv/plugtest-ng4t-fsm-css"
+#    options:
+#      - key: "type"
+#        value: "start"
+#

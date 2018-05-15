@@ -11,7 +11,7 @@ description: "Descriptor to package NG4T"
 network_functions:
   - vnf_id: "vnf_ng4t"
     vnf_vendor: "ng4t"
-    vnf_name: "ng4t-vnf"
+    vnf_name: "ng4t-vtester"
     vnf_version: "0.1"
 
 ##
@@ -19,33 +19,33 @@ network_functions:
 ## outside world.
 ##
 connection_points:
-  - id: "nscpmgmt"
-    interface: "ipv4"
-    type: "management"
-  - id: "nscpwest"
-    interface: "ipv4"
-    type: "external"
-  - id: "nscpeast"
-    interface: "ipv4"
-    type: "external"
+#  - id: "nscpmgmt"
+#    interface: "ipv4"
+#    type: "management"
+#  - id: "nscpwest"
+#    interface: "ipv4"
+#    type: "external"
+#  - id: "nscpeast"
+#    interface: "ipv4"
+#    type: "external"
 
 ##
 ## The virtual links that interconnect
 ## the different connections points.
 ##
 virtual_links:
-  - id: "vlmgmt"
-    connectivity_type: "E-LAN"
-    connection_points_reference:
-      - "vnf_vth:cpmgmt"
-      - "nscpmgmt"
-  - id: "vlwest"
-    connectivity_type: "E-Line"
-    connection_points_reference:
-      - "nscpwest"
-      - "vnf_vth:cpwest"
-  - id: "vleast"
-    connectivity_type: "E-Line"
-    connection_points_reference:
-      - "nscpeast"
-      - "vnf_vth:cpeast"
+#  - id: "vlmgmt"
+#    connectivity_type: "E-LAN"
+#    connection_points_reference:
+#      - "vnf_vth:cpmgmt"
+#      - "nscpmgmt"
+#  - id: "vlwest"
+#    connectivity_type: "E-Line"
+#    connection_points_reference:
+#      - "nscpwest"
+#      - "vnf_vth:cpwest"
+#  - id: "vleast"
+#    connectivity_type: "E-Line"
+#    connection_points_reference:
+#      - "nscpeast"
+#      - "vnf_vth:cpeast"
