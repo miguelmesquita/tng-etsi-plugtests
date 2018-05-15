@@ -7,7 +7,7 @@ vendor: "ixia"
 name: "stcv-vnf"
 version: "0.1"
 author: "alberto-m-rocha@alticelabs.com"
-description: "Ixia VNF"
+description: "Ixia VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php/Keysight"
 ##
 ## The virtual deployment unit.
 ##
@@ -18,12 +18,12 @@ virtual_deployment_units:
     vm_image_md5: '16dd12fb8ca246cfca2259d2df435640'
     resource_requirements:
       cpu:
-        vcpus: 1
+        vcpus: 2
       memory:
         size: 4
         size_unit: "GB"
       storage:
-        size: 12
+        size: 8
         size_unit: "GB"
     connection_points:
       - id: "mgmt"
