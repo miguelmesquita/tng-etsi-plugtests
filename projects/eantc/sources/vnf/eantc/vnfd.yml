@@ -40,12 +40,17 @@ virtual_links:
   - id: "mgmt"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vdu01:mgmt"
+      - "vdu01:cpmgmt"
       - "cpmgmt"
+  - id: "input"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:cpinput"
+      - "cpinput"
   - id: "output"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:output"
+      - "vdu01:cpoutput"
       - "cpoutput"
 
 ##
@@ -56,6 +61,9 @@ connection_points:
   - id: "cpmgmt"
     interface: "ipv4"
     type: "management"
+  - id: "cpinput"
+    interface: "ipv4"
+    type: "internal"
   - id: "cpoutput"
     interface: "ipv4"
     type: "internal"
@@ -67,3 +75,5 @@ function_specific_managers:
     options:
       - key: "type"
         value: "start"
+      - key: "type"
+        value: "configure"
