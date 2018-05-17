@@ -4,7 +4,7 @@
 ##
 descriptor_version: "vnfd-schema-01"
 vendor: "eantc"
-name: "stcv-vnf"
+name: "eantc-vnf"
 version: "0.1"
 author: "alberto-m-rocha@alticelabs.com"
 description: "EANTC VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php/EANTC"
@@ -60,10 +60,10 @@ connection_points:
     interface: "ipv4"
     type: "internal"
 
-#function_specific_managers:
-#  - id: "sonfsmplugtesteantccss1"
-#    description: "FSM to do a first FSM test"
-#    image: "sonatanfv/plugtest-eantc-fsm-css"
-#    options:
-#      - key: "type"
-#        value: "start"
+function_specific_managers:
+  - id: "sonfsmplugtesteantccss1"
+    description: "FSM to do a first FSM test"
+    image: "sonatanfv/plugtest-eantc-fsm-css"
+    options:
+      - key: "type"
+        value: "start"
