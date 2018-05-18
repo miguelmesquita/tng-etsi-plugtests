@@ -12,8 +12,8 @@ description: "NG40 vTester"
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
-  - id: "vran"
-    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
+  - id: "ng40"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/ng4T/ng40vTester_v1.0.qcow2
     vm_image_format: "qcow2"
     vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
     resource_requirements:
@@ -26,160 +26,60 @@ virtual_deployment_units:
         size: 16
         size_unit: "GB"
     connection_points:
-      - id: "s1mme"
+        # vran
+      - id: "vran_s1mme"
         interface: "ipv4"
         type: "internal"
-      - id: "s1u"
+      - id: "vran_s1u"
         interface: "ipv4"
         type: "internal"
-      - id: "sgi"
+      - id: "vran_sgi"
         interface: "ipv4"
         type: "internal"
-##
-## The virtual deployment unit.
-##
-virtual_deployment_units:
-  - id: "vmme"
-    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
-    vm_image_format: "qcow2"
-    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    resource_requirements:
-      cpu:
-        vcpus: 2
-      memory:
-        size: 4
-        size_unit: "GB"
-      storage:
-        size: 16
-        size_unit: "GB"
-    connection_points:
-      - id: "s1mme"
+        # vmme
+      - id: "vmme_s1mme"
         interface: "ipv4"
         type: "internal"
-      - id: "s11"
+      - id: "vmme_s11"
         interface: "ipv4"
         type: "internal"
-      - id: "dia"
+      - id: "vmme_dia"
         interface: "ipv4"
         type: "internal"
-##
-## The virtual deployment unit.
-##
-virtual_deployment_units:
-  - id: "vsgw"
-    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
-    vm_image_format: "qcow2"
-    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    resource_requirements:
-      cpu:
-        vcpus: 2
-      memory:
-        size: 4
-        size_unit: "GB"
-      storage:
-        size: 16
-        size_unit: "GB"
-    connection_points:
-      - id: "s1u"
+        # vsgw
+      - id: "vsgw_s1u"
         interface: "ipv4"
         type: "internal"
-      - id: "s11"
+      - id: "vsgw_s11"
         interface: "ipv4"
         type: "internal"
-      - id: "s5"
+      - id: "vsgw_s5"
         interface: "ipv4"
         type: "internal"
-##
-## The virtual deployment unit.
-##
-virtual_deployment_units:
-  - id: "vpgw"
-    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
-    vm_image_format: "qcow2"
-    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    resource_requirements:
-      cpu:
-        vcpus: 2
-      memory:
-        size: 4
-        size_unit: "GB"
-      storage:
-        size: 16
-        size_unit: "GB"
-    connection_points:
-      - id: "s5"
+        # vpgw
+      - id: "vpgw_s5"
         interface: "ipv4"
         type: "internal"
-      - id: "dia"
+      - id: "vpgw_dia"
         interface: "ipv4"
         type: "internal"
-      - id: "sgi"
+      - id: "vpgw_sgi"
         interface: "ipv4"
         type: "internal"
-##
-## The virtual deployment unit.
-##
-virtual_deployment_units:
-  - id: "hss"
-    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
-    vm_image_format: "qcow2"
-    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    resource_requirements:
-      cpu:
-        vcpus: 2
-      memory:
-        size: 4
-        size_unit: "GB"
-      storage:
-        size: 16
-        size_unit: "GB"
-    connection_points:
-      - id: "dia"
+        # hss
+      - id: "hss_dia"
         interface: "ipv4"
         type: "internal"
-##
-## The virtual deployment unit.
-##
-virtual_deployment_units:
-  - id: "pcrf"
-    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
-    vm_image_format: "qcow2"
-    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    resource_requirements:
-      cpu:
-        vcpus: 2
-      memory:
-        size: 4
-        size_unit: "GB"
-      storage:
-        size: 16
-        size_unit: "GB"
-    connection_points:
-      - id: "dia"
+        # pcrf
+      - id: "pcrf_dia"
         interface: "ipv4"
         type: "internal"
-##
-## The virtual deployment unit.
-##
-virtual_deployment_units:
-  - id: "oss"
-    vm_image: "http://172.22.1.1/VNFs/NG4T/xxxxxxxxxxx.qcow2"
-    vm_image_format: "qcow2"
-    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    resource_requirements:
-      cpu:
-        vcpus: 2
-      memory:
-        size: 4
-        size_unit: "GB"
-      storage:
-        size: 16
-        size_unit: "GB"
-    connection_points:
-      - id: "dia"
+        # oss
+      - id: "oss_dia"
         interface: "ipv4"
         type: "internal"
 
+##
 ## The virtual links that interconnect
 ## the different connections points.
 ##
@@ -187,42 +87,51 @@ virtual_links:
   - id: "S11"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vmme:s11"
-      - "vsgw:s11"
-      - "cps11"
+      - "ng40:vmme_s11"
+      - "ng40:vsgw:s11"
+      - "cp_vmme_s11"
+      - "cp_vsgw_s11"
   - id: "S1-MME"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vran:s1mme"
-      - "vmme:s1mme"
-      - "cps1mme"
+      - "ng40:vran_s1mme"
+      - "ng40:vmme_s1mme"
+      - "cp_vran_s1mme"
+      - "cp_vmme_s1mme"
   - id: "S1-U"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vran:s1u"
-      - "vsgw:s1u"
-      - "cps1u"
+      - "ng40:vran_s1u"
+      - "ng40:vsgw_s1u"
+      - "cp_vran_s1u"
+      - "cp_vsgw_s1u"
   - id: "S5"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vpgw:s5"
-      - "vsgw:s5"
-      - "cps5"
+      - "ng40:vpgw_s5"
+      - "ng40:vsgw_s5"
+      - "cp_vpgw_s5"
+      - "cp_vsgw_s5"
   - id: "DIA"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vpgw:dia"
-      - "vmme:dia"
-      - "vhss:dia"
-      - "vpcrf:dia"
-      - "vocs:dia"
-      - "cpdia"
+      - "ng40:vpgw_dia"
+      - "ng40:vmme_dia"
+      - "ng40:vhss_dia"
+      - "ng40:vpcrf_dia"
+      - "ng40:vocs_dia"
+      - "cp_vpgw_dia"
+      - "cp_vmme_dia"
+      - "cp_vhss_dia"
+      - "cp_vpcrf_dia"
+      - "cp_vocs_dia"
   - id: "SGi"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vpgw:sgi"
-      - "vran:sgi"
-      - "cpsgi"
+      - "ng40:vpgw_sgi"
+      - "ng40:vran_sgi"
+      - "cp_vpgw_sgi"
+      - "cp_vran_sgi"
 
 ##
 ## The VNF connection points to the
