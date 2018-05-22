@@ -1,0 +1,136 @@
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "italtel"
+name: "irps-ci"
+version: "0.5"
+author: "Carlos Parada :@ Altice Labs"
+description: "Italtel iRPS-CI"
+
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+    # OAM
+  - id: "vdu01"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Italtel/oam_irps_PLUGTESTS3.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '6690b6b258eaf2c65456a358004d3b10'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 6
+        size_unit: "GB"
+      storage:
+        size: 15
+        size_unit: "GB"
+    connection_points:
+      - id: "if0"
+        interface: "ipv4"
+        type: "internal"
+      - id: "if1"
+        interface: "ipv4"
+        type: "management"
+
+    # IBCF
+  - id: "vdu02"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Italtel/ibcf_irps_PLUGTESTS3.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '5e5987ba488a0aae0a1965f37d7dff48'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 15
+        size_unit: "GB"
+    connection_points:
+      - id: "if0"
+        interface: "ipv4"
+        type: "internal"
+
+    # FELB
+  - id: "vdu03"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Italtel/felb_irps_PLUGTESTS3.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '034d0f1ca89a8fe46d440b39d398cb69'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 15
+        size_unit: "GB"
+    connection_points:
+      - id: "if0"
+        interface: "ipv4"
+        type: "internal"
+      - id: "if1"
+        interface: "ipv4"
+        type: "external"
+
+    # DB
+  - id: "vdu04"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Italtel/db_irps_PLUGTESTS3.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'bba29516d064490d591e1a32fdc02a73'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 1
+        size_unit: "GB"
+      storage:
+        size: 15
+        size_unit: "GB"
+    connection_points:
+      - id: "if0"
+        interface: "ipv4"
+        type: "internal"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "vl1"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:if1"
+      - "cpvl1"
+  - id: "vl2"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:if0"
+      - "vdu02:if0"
+      - "vdu03:if0"
+      - "vdu04:if0"
+      - "cpvl2"
+
+##
+## The VNF connection points to the
+## outside world.
+##
+connection_points:
+  - id: "cpvl1"
+    interface: "ipv4"
+    type: "management"
+  - id: "cpvl2"
+    interface: "ipv4"
+    type: "internal"
+
+#function_specific_managers:
+#  - id: "sonfsmplugtestng4tcss1"
+#    description: "FSM to do a first FSM test"
+#    image: "sonatanfv/plugtest-ng4t-fsm-css"
+#    options:
+#      - key: "type"
+#        value: "start"
+#
