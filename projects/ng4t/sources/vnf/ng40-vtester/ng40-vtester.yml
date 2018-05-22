@@ -4,18 +4,18 @@
 ##
 descriptor_version: "vnfd-schema-01"
 vendor: "ng4t"
-name: "ng40-vtester"
-version: "0.1"
+name: "ng40-vnf"
+version: "0.5"
 author: "Carlos Parada :@ Altice Labs"
 description: "NG40 vTester"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
-  - id: "ng40"
-    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/ng4T/ng40vTester_v1.0.qcow2
+  - id: "vdu01"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/ng4T/ng40vTester_v1.0.qcow2"
     vm_image_format: "qcow2"
-    vm_image_md5: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    vm_image_md5: '9eceefe5926e1aec35ff8babc0be2551'
     resource_requirements:
       cpu:
         vcpus: 2
@@ -26,127 +26,95 @@ virtual_deployment_units:
         size: 16
         size_unit: "GB"
     connection_points:
-        # vran
-      - id: "vran_s1mme"
+      - id: "ens3"
         interface: "ipv4"
-        type: "internal"
-      - id: "vran_s1u"
-        interface: "ipv4"
-        type: "internal"
-      - id: "vran_sgi"
-        interface: "ipv4"
-        type: "internal"
-        # vmme
-      - id: "vmme_s1mme"
-        interface: "ipv4"
-        type: "internal"
-      - id: "vmme_s11"
-        interface: "ipv4"
-        type: "internal"
-      - id: "vmme_dia"
-        interface: "ipv4"
-        type: "internal"
-        # vsgw
-      - id: "vsgw_s1u"
-        interface: "ipv4"
-        type: "internal"
-      - id: "vsgw_s11"
-        interface: "ipv4"
-        type: "internal"
-      - id: "vsgw_s5"
-        interface: "ipv4"
-        type: "internal"
-        # vpgw
-      - id: "vpgw_s5"
-        interface: "ipv4"
-        type: "internal"
-      - id: "vpgw_dia"
-        interface: "ipv4"
-        type: "internal"
-      - id: "vpgw_sgi"
-        interface: "ipv4"
-        type: "internal"
-        # hss
-      - id: "hss_dia"
-        interface: "ipv4"
-        type: "internal"
-        # pcrf
-      - id: "pcrf_dia"
-        interface: "ipv4"
-        type: "internal"
-        # oss
-      - id: "oss_dia"
-        interface: "ipv4"
-        type: "internal"
+        type: "management"
+#      - id: "ens4"
+#        interface: "ipv4"
+#        type: "internal"
+#      - id: "ens5"
+#        interface: "ipv4"
+#        type: "internal"
+#      - id: "ens6"
+#        interface: "ipv4"
+#        type: "internal"
+#      - id: "ens7"
+#        interface: "ipv4"
+#        type: "internal"
+#      - id: "ens8"
+#        interface: "ipv4"
+#        type: "internal"
+#      - id: "ens9"
+#        interface: "ipv4"
+#        type: "internal"
 
 ##
 ## The virtual links that interconnect
 ## the different connections points.
 ##
 virtual_links:
-  - id: "S11"
+  - id: "mgmt"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "ng40:vmme_s11"
-      - "ng40:vsgw:s11"
-      - "cp_vmme_s11"
-      - "cp_vsgw_s11"
-  - id: "S1-MME"
-    connectivity_type: "E-LAN"
-    connection_points_reference:
-      - "ng40:vran_s1mme"
-      - "ng40:vmme_s1mme"
-      - "cp_vran_s1mme"
-      - "cp_vmme_s1mme"
-  - id: "S1-U"
-    connectivity_type: "E-LAN"
-    connection_points_reference:
-      - "ng40:vran_s1u"
-      - "ng40:vsgw_s1u"
-      - "cp_vran_s1u"
-      - "cp_vsgw_s1u"
-  - id: "S5"
-    connectivity_type: "E-LAN"
-    connection_points_reference:
-      - "ng40:vpgw_s5"
-      - "ng40:vsgw_s5"
-      - "cp_vpgw_s5"
-      - "cp_vsgw_s5"
-  - id: "DIA"
-    connectivity_type: "E-LAN"
-    connection_points_reference:
-      - "ng40:vpgw_dia"
-      - "ng40:vmme_dia"
-      - "ng40:vhss_dia"
-      - "ng40:vpcrf_dia"
-      - "ng40:vocs_dia"
-      - "cp_vpgw_dia"
-      - "cp_vmme_dia"
-      - "cp_vhss_dia"
-      - "cp_vpcrf_dia"
-      - "cp_vocs_dia"
-  - id: "SGi"
-    connectivity_type: "E-LAN"
-    connection_points_reference:
-      - "ng40:vpgw_sgi"
-      - "ng40:vran_sgi"
-      - "cp_vpgw_sgi"
-      - "cp_vran_sgi"
+      - "vdu01:ens3"
+      - "cpmgmt"
+#  - id: "s11"
+#    connectivity_type: "E-LAN"
+#    connection_points_reference:
+#      - "vdu01:ens4"
+#      - "cps11"
+# - id: "s1-mme"
+#   connectivity_type: "E-LAN"
+#   connection_points_reference:
+#     - "vdu01:ens5"
+#     - "cps1mme"
+# - id: "s1-u"
+#   connectivity_type: "E-LAN"
+#   connection_points_reference:
+#     - "vdu01:ens6"
+#     - "cps1u"
+# - id: "s5"
+#   connectivity_type: "E-LAN"
+#   connection_points_reference:
+#     - "vdu01:ens7"
+#     - "cps5"
+# - id: "dia"
+#   connectivity_type: "E-LAN"
+#   connection_points_reference:
+#     - "vdu01:ens8"
+#     - "cpdia"
+# - id: "sgi"
+#   connectivity_type: "E-LAN"
+#   connection_points_reference:
+#     - "vdu01:ens9"
+#     - "cpsgi"
 
 ##
 ## The VNF connection points to the
 ## outside world.
 ##
 connection_points:
-#  - id: "cpmgmt"
+  - id: "cpmgmt"
+    interface: "ipv4"
+    type: "management"
+#  - id: "cps11"
 #    interface: "ipv4"
-#    type: "management"
-#  - id: "cpwest"
+#    type: "internal"
+#  - id: "cps1mme"
 #    interface: "ipv4"
-#    type: "external"
-#  - id: "cpeast"
+#    type: "internal"
+#  - id: "cps1u"
 #    interface: "ipv4"
-#    type: "external"
+#    type: "internal"
+#  - id: "cps5"
+#    interface: "ipv4"
+#    type: "internal"
+#  - id: "cpdia"
+#    interface: "ipv4"
+#    type: "internal"
+#  - id: "cpsgi"
+#    interface: "ipv4"
+#    type: "internal"
 
 #function_specific_managers:
 #  - id: "sonfsmplugtestng4tcss1"
