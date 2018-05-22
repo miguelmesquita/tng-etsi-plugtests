@@ -1,41 +1,44 @@
+
+---
 ##
 ## Some general information regarding this
 ## VNF descriptor.
 ##
 descriptor_version: "vnfd-schema-01"
-vendor: "eantc"
-name: "eantc-vnf"
+vendor: "eu.sonata-nfv"
+name: "vnf-aero"
 version: "0.1"
-author: "alberto-m-rocha@alticelabs.com"
-description: "EANTC Test Automation Tool VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php/EANTC"
+author: "Name, Company, Contact"
+description: "A aero VNF"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/EANTC/EANTC-TestVNF.vmdk"
-    vm_image_format: "vmdk"
-    vm_image_md5: '05132ee9bc28e4b69889e41becc0e236'
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Mobileum/mobileum_aero.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '19e5245cb898ec332e046e381e90343f'
     resource_requirements:
       cpu:
-        vcpus: 2
+        vcpus: 1
       memory:
-        size: 4
+        size: 2
         size_unit: "GB"
       storage:
-        size: 40
+        size: 10
         size_unit: "GB"
     connection_points:
-      - id: "mgmt"
-        interface: "ipv4"
-        type: "management"
-      - id: "input"
+      - id: "vdu01:cp01"
         interface: "ipv4"
         type: "internal"
-      - id: "output"
+      - id: "vdu01:cp02"
+        interface: "ipv4"
+        type: "internal"
+      - id: "vdu01:cp03"
         interface: "ipv4"
         type: "internal"
 
+##
 ## The virtual links that interconnect
 ## the different connections points.
 ##
@@ -43,40 +46,32 @@ virtual_links:
   - id: "mgmt"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vdu01:mgmt"
-      - "cpmgmt"
+      - "vdu01:cp01"
+      - "mgmt"
+
   - id: "input"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:input"
-      - "cpinput"
+      - "vdu01:cp02"
+      - "input"
+
   - id: "output"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:output"
-      - "cpoutput"
+      - "vdu01:cp03"
+      - "output"
 
 ##
-## The VNF connection points to the
+## The VNF connection points to the 
 ## outside world.
 ##
 connection_points:
-  - id: "cpmgmt"
+  - id: "mgmt"
     interface: "ipv4"
     type: "management"
-  - id: "cpinput"
+  - id: "input"
     interface: "ipv4"
     type: "internal"
-  - id: "cpoutput"
+  - id: "output"
     interface: "ipv4"
     type: "internal"
-
-function_specific_managers:
-  - id: "sonfsmplugtesteantccss1"
-    description: "FSM to do a first FSM test"
-    image: "sonatanfv/plugtest-eantc-fsm-css"
-    options:
-      - key: "type"
-        value: "start"
-      - key: "type"
-        value: "configure"
