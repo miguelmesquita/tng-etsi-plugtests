@@ -1,8 +1,8 @@
 descriptor_extension: yml
 package:
-  description: ETSI Plugtest A10NETWORKS Spirent
-  maintainer: Felipe Vicens, ATOS, felipe.vicens@atos.net
-  name: "etsi-a10networks-spirent"
-  vendor: "eu.sonata"
-  version: "0.5"
+  description: "Spirent - a10networks"
+  maintainer: Thomas Soenen
+  name: "spirent-a10networks"
+  vendor: "plugtest"
+  version: "0.1"
 version: '0.5'
