@@ -1,0 +1,153 @@
+
+---
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "mobileum"
+name: "vnf-vntr"
+version: "0.1"
+author: "Alberto Rocha, Altice Labs, alberto-m-rocha@alticelabs.com"
+description: "A vNTR VNF (composed of 4 VDU's)"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  # NTR APP
+  - id: "vdu01"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Mobileum/mobileum_app.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '84e717a59f1d08fda4b57cc16d087259'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 2
+        size_unit: "GB"
+      storage:
+        size: 20
+        size_unit: "GB"
+    connection_points:
+#      - id: "vdu01:mgmt"
+#        interface: "ipv4"
+#        type: "internal"
+      - id: "vdu01:input"
+        interface: "ipv4"
+        type: "internal"
+#      - id: "vdu01:output"
+#        interface: "ipv4"
+#        type: "internal"
+
+  # NLB (SSTP)
+  - id: "vdu02"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Mobileum/mobileum_sstp.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'a875f16b663f7f542f5a73f78fc7594d'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 2
+        size_unit: "GB"
+      storage:
+        size: 20
+        size_unit: "GB"
+    connection_points:
+#      - id: "vdu02:mgmt"
+#        interface: "ipv4"
+#        type: "internal"
+      - id: "vdu02:input"
+        interface: "ipv4"
+        type: "internal"
+#      - id: "vdu02:output"
+#        interface: "ipv4"
+#        type: "internal"
+
+  # In-memory DB (aero)
+  - id: "vdu03"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Mobileum/mobileum_aero.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '19e5245cb898ec332e046e381e90343f'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 2
+        size_unit: "GB"
+      storage:
+        size: 20
+        size_unit: "GB"
+    connection_points:
+#      - id: "vdu03:mgmt"
+#        interface: "ipv4"
+#        type: "internal"
+      - id: "vdu03:input"
+        interface: "ipv4"
+        type: "internal"
+#      - id: "vdu03:output"
+#        interface: "ipv4"
+#        type: "internal"
+
+  # Database (DB)
+  - id: "vdu04"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Mobileum/mobileum_db2.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '7c65b9188b67c3cf657d9d80b4859efb'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 40
+        size_unit: "GB"
+    connection_points:
+#      - id: "vdu04:mgmt"
+#        interface: "ipv4"
+#        type: "internal"
+      - id: "vdu04:input"
+        interface: "ipv4"
+        type: "internal"
+#      - id: "vdu04:output"
+#        interface: "ipv4"
+#        type: "internal"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+#  - id: "mgmt"
+#    connectivity_type: "E-LAN"
+#    connection_points_reference:
+#      - "vdu01:mgmt"
+#      - "mgmt"
+
+  - id: "input"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:input"
+      - "input"
+
+#  - id: "output"
+#    connectivity_type: "E-Line"
+#    connection_points_reference:
+#      - "vdu01:output"
+#      - "output"
+
+##
+## The VNF connection points to the 
+## outside world.
+##
+connection_points:
+#  - id: "mgmt"
+#    interface: "ipv4"
+#    type: "management"
+  - id: "input"
+    interface: "ipv4"
+    type: "internal"
+#  - id: "output"
+#    interface: "ipv4"
+#    type: "internal"
