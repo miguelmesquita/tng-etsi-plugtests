@@ -1,0 +1,97 @@
+descriptor_version: "vnfd-schema-02"
+vendor: "a10networks"
+name: "vth-vnf"
+version: "0.1"
+author: "Thomas Soenen"
+description: "foobar"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vdu02"
+    vm_image: "http://www.google.com"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'df942aa9105a055ee95a814da644972f'
+    resource_requirements:
+      cpu:
+        vcpus: 1
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 12
+        size_unit: "GB"    
+
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "management"
+      - id: "west"
+        interface: "ipv4"
+        type: "internal"
+      - id: "east"
+        interface: "ipv4"
+        type: "internal"
+    user_data: |
+      a10_blob: |
+       ip dns primary 8.8.4.4
+       hostname vth5
+       glm use-mgmt-port
+       glm allocate-bandwidth 200
+       glm token vTh
+       glm enable-requests
+       glm send license-request
+       inter ether 1
+        ip addr dhcp
+        enable
+       inter ether 2
+        ip addr dhcp
+        enable
+# function_specific_managers:
+# - id: "sonfsmgenericservicevforwardcss1"
+#   description: "FSM to do a first FSM test"
+#   image: "tsoenen/genericservice-vforward-fsm-css"
+#   options:
+#     - key: "type"
+#       value: "start"
+ 
+##
+## The VNF connection points to the 
+## outside world.
+##
+connection_points:
+  - id: "mgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "input"
+    interface: "ipv4"
+    type: "external"
+  - id: "output"
+    interface: "ipv4"
+    type: "external"
+
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu02:eth0"
+      - "mgmt"
+    dhcp: True
+  - id: "input"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu02:west"
+      - "input"
+    dhcp: True
+  - id: "output"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu02:east"
+      - "output"
+    dhcp: True
+ 
