@@ -3,11 +3,11 @@
 ## VNF descriptor.
 ##
 descriptor_version: "vnfd-schema-01"
-vendor: "spirent"
-name: "stcv-vnf"
+vendor: "nginx"
+name: "nginx"
 version: "0.1"
-author: "Felipe Vicens :@ ATOS"
-description: "Spirent Master Claw 7.1 virtual-probe"
+author: "Thomas Soenen @imec"
+description: "nginx VNF"
 ##
 ## The virtual deployment unit.
 ##
@@ -15,21 +15,21 @@ virtual_deployment_units:
   - id: "vdu01"
     vm_image: "http://www.google.com"
     vm_image_format: "qcow2"
-    vm_image_md5: '16dd12fb8ca246cfca2259d2df435640'
+    vm_image_md5: '82899f91e80f1a068896631d5a33c933'
     resource_requirements:
       cpu:
         vcpus: 1
       memory:
-        size: 4
+        size: 1
         size_unit: "GB"
       storage:
-        size: 12
+        size: 10
         size_unit: "GB"
     connection_points:
       - id: "mgmt"
         interface: "ipv4"
         type: "management"
-      - id: "cpoutput"
+      - id: "cpinout"
         interface: "ipv4"
         type: "internal"
 
@@ -42,11 +42,11 @@ virtual_links:
     connection_points_reference:
       - "vdu01:mgmt"
       - "cpmgmt"
-  - id: "output"
+  - id: "inout"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:cpoutput"
-      - "cpoutput"
+      - "vdu01:cpinout"
+      - "cpinout"
 
 ##
 ## The VNF connection points to the
@@ -56,7 +56,7 @@ connection_points:
   - id: "cpmgmt"
     interface: "ipv4"
     type: "management"
-  - id: "cpoutput"
+  - id: "cpinout"
     interface: "ipv4"
     type: "internal"
 

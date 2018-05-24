@@ -3,11 +3,11 @@
 ## VNF descriptor.
 ##
 descriptor_version: "vnfd-schema-01"
-vendor: "spirent"
-name: "stcv-vnf"
+vendor: "a10networks"
+name: "vth-vnf"
 version: "0.1"
 author: "Felipe Vicens :@ ATOS"
-description: "Spirent Master Claw 7.1 virtual-probe"
+description: "a10networks vthunder"
 ##
 ## The virtual deployment unit.
 ##
@@ -15,7 +15,7 @@ virtual_deployment_units:
   - id: "vdu01"
     vm_image: "http://www.google.com"
     vm_image_format: "qcow2"
-    vm_image_md5: '16dd12fb8ca246cfca2259d2df435640'
+    vm_image_md5: 'df942aa9105a055ee95a814da644972f'
     resource_requirements:
       cpu:
         vcpus: 1
@@ -29,10 +29,27 @@ virtual_deployment_units:
       - id: "mgmt"
         interface: "ipv4"
         type: "management"
-      - id: "cpoutput"
+      - id: "west"
         interface: "ipv4"
         type: "internal"
-
+      - id: "east"
+        interface: "ipv4"
+        type: "internal"
+    user_data: |
+      a10_blob: |
+         ip dns primary 8.8.4.4
+         hostname vth5
+         glm use-mgmt-port
+         glm allocate-bandwidth 200
+         glm token vTh
+         glm enable-requests
+         glm send license-request
+         inter ether 1
+            ip addr dhcp
+            enable
+         inter ether 2
+            ip addr dhcp
+            enable
 ## The virtual links that interconnect
 ## the different connections points.
 ##
@@ -42,11 +59,16 @@ virtual_links:
     connection_points_reference:
       - "vdu01:mgmt"
       - "cpmgmt"
-  - id: "output"
+  - id: "west"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:cpoutput"
-      - "cpoutput"
+      - "vdu01:west"
+      - "cpwest"
+  - id: "east"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:east"
+      - "cpeast"
 
 ##
 ## The VNF connection points to the
@@ -56,14 +78,17 @@ connection_points:
   - id: "cpmgmt"
     interface: "ipv4"
     type: "management"
-  - id: "cpoutput"
+  - id: "cpwest"
     interface: "ipv4"
-    type: "internal"
+    type: "external"
+  - id: "cpeast"
+    interface: "ipv4"
+    type: "external"
 
 #function_specific_managers:
-#  - id: "sonfsmplugtestspirentcss1"
+#  - id: "sonfsmplugtesta10networkscss1"
 #    description: "FSM to do a first FSM test"
-#    image: "sonatanfv/plugtest-spirent-fsm-css"
+#    image: "sonatanfv/plugtest-a10networks-fsm-css"
 #    options:
 #      - key: "type"
 #        value: "start"
