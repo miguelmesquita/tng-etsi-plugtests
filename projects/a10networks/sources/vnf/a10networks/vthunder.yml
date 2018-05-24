@@ -13,9 +13,9 @@ description: "a10networks vthunder"
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/VNFs/A10Networks/ACOS_vThunder4_1_1_P6-10G.qcow2"
+    vm_image: "http://www.google.com"
     vm_image_format: "qcow2"
-    vm_image_md5: 'f5092c05358c9bb0c0cadbc62f0d23b9'
+    vm_image_md5: 'df942aa9105a055ee95a814da644972f'
     resource_requirements:
       cpu:
         vcpus: 1
@@ -35,7 +35,21 @@ virtual_deployment_units:
       - id: "east"
         interface: "ipv4"
         type: "internal"
-
+    user_data: |
+      a10_blob: |
+         ip dns primary 8.8.4.4
+         hostname vth5
+         glm use-mgmt-port
+         glm allocate-bandwidth 200
+         glm token vTh
+         glm enable-requests
+         glm send license-request
+         inter ether 1
+            ip addr dhcp
+            enable
+         inter ether 2
+            ip addr dhcp
+            enable
 ## The virtual links that interconnect
 ## the different connections points.
 ##
