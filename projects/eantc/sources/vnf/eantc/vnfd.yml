@@ -7,15 +7,15 @@ vendor: "eantc"
 name: "eantc-vnf"
 version: "0.1"
 author: "alberto-m-rocha@alticelabs.com"
-description: "EANTC VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php/EANTC"
+description: "EANTC Test Automation Tool VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php/EANTC"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/EANTC/EANTC_TestVNF-1.vmdk"
-    vm_image_format: "qcow2"
-    vm_image_md5: 'aec3e0c3a204b236994b5efd042f5283'
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/EANTC/EANTC-TestVNF.vmdk"
+    vm_image_format: "vmdk"
+    vm_image_md5: '05132ee9bc28e4b69889e41becc0e236'
     resource_requirements:
       cpu:
         vcpus: 2

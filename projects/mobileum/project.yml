@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: 'ETSI Plugtest virtul NTR VNF (www.mobileum.com)'
+  maintainer: 'Alberto Rocha, Altice Labs, alberto-m-rocha@alticelabs.com'
+  name: 'vntr'
+  vendor: 'mobileum'
+  version: '0.1'
+version: '0.5'

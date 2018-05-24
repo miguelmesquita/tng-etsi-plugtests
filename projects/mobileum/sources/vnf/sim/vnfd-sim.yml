@@ -1,0 +1,54 @@
+
+---
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "mobileum"
+name: "vnf-sim"
+version: "0.1"
+author: "Alberto Rocha, Altice Labs, alberto-m-rocha@alticelabs.com"
+description: "A Mobileum virtual NTR SIMULATOR VNF"
+
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/Mobileum/mobileum_sim.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: 'b9753432b4370484c3d69754dae39912'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 40
+        size_unit: "GB"
+    connection_points:
+      - id: "cp-in"
+        interface: "ipv4"
+        type: "internal"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "vl-in"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:cp-in"
+      - "cp-vl-in"
+
+##
+## The VNF connection points to the 
+## outside world.
+##
+connection_points:
+  - id: "cp-vl-in"
+    interface: "ipv4"
+    type: "external"
