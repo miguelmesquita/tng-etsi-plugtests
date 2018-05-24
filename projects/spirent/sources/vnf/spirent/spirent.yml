@@ -13,7 +13,7 @@ description: "Spirent Master Claw 7.1 virtual-probe"
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/VNFs/Spirent/stcv-4.80.2426.qcow2"
+    vm_image: "http://www.google.com"
     vm_image_format: "qcow2"
     vm_image_md5: '16dd12fb8ca246cfca2259d2df435640'
     resource_requirements:

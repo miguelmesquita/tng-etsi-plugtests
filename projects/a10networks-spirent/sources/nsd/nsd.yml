@@ -41,7 +41,8 @@ virtual_links:
   - id: "vlmgmt"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vth:mgmt"
+      - "vth:cpmgmt"
+      - "spirent:cpmgmt"
       - "mgmt"
   - id: "vlwest"
     connectivity_type: "E-Line"
@@ -52,9 +53,9 @@ virtual_links:
     connectivity_type: "E-Line"
     connection_points_reference:
       - "spirent:cpoutput"
-      - "vth:input"
+      - "vth:cpwest"
   - id: "vleast"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vth:output"
+      - "vth:cpeast"
       - "output"
