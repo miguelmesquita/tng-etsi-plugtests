@@ -18,11 +18,11 @@ network_functions:
   - vnf_id: "sim_vnf"
     vnf_vendor: "mobileum"
     vnf_name: "vnf-sim"
-    vnf_version: "0.5"
+    vnf_version: "0.1"
   - vnf_id: "vntr_vnf"
     vnf_vendor: "mobileum"
     vnf_name: "vnf-vntr"
-    vnf_version: "0.5"
+    vnf_version: "0.1"
 
 ##
 ## The NS connection points to the 
