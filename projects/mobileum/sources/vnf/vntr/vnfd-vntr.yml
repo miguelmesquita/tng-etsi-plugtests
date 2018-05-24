@@ -95,20 +95,42 @@ virtual_deployment_units:
 ## the different connections points.
 ##
 virtual_links:
-  - id: "vl-in"
+  - id: "vl-in-vdu01"
     connectivity_type: "E-Line"
     connection_points_reference:
       - "vdu01:cp-in"
+      - "cp-vl-in-vdu01"
+  - id: "vl-in-vdu02"
+    connectivity_type: "E-Line"
+    connection_points_reference:
       - "vdu02:cp-in"
+      - "cp-vl-in-vdu02"
+  - id: "vl-in-vdu03"
+    connectivity_type: "E-Line"
+    connection_points_reference:
       - "vdu03:cp-in"
+      - "cp-vl-in-vdu03"
+  - id: "vl-in-vdu04"
+    connectivity_type: "E-Line"
+    connection_points_reference:
       - "vdu04:cp-in"
-      - "cp-vl-in"
+      - "cp-vl-in-vdu04"
 
 ##
 ## The VNF connection points to the 
 ## outside world.
 ##
 connection_points:
-  - id: "cp-vl-in"
+  - id: "cp-vl-in-vdu01"
     interface: "ipv4"
     type: "internal"
+  - id: "cp-vl-in-vdu02"
+    interface: "ipv4"
+    type: "internal"
+  - id: "cp-vl-in-vdu03"
+    interface: "ipv4"
+    type: "internal"
+  - id: "cp-vl-in-vdu04"
+    interface: "ipv4"
+    type: "internal"
+

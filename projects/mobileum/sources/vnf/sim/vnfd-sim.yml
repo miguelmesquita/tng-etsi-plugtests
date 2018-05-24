@@ -29,15 +29,9 @@ virtual_deployment_units:
         size: 40
         size_unit: "GB"
     connection_points:
-#      - id: "cp-mgmt"
-#        interface: "ipv4"
-#        type: "internal"
       - id: "cp-in"
         interface: "ipv4"
         type: "internal"
-#      - id: "cp-out"
-#        interface: "ipv4"
-#        type: "internal"
 
 ##
 ## The virtual links that interconnect
@@ -57,4 +51,4 @@ virtual_links:
 connection_points:
   - id: "cp-vl-in"
     interface: "ipv4"
-    type: "internal"
+    type: "external"
