@@ -1,0 +1,55 @@
+---
+descriptor_version: "1.0"
+
+vendor: "eu.sonata-nfv"
+name: "generic-service"
+version: "0.1"
+author: "Thomas Soenen"
+description: >
+  "A generic service"
+
+network_functions:
+  - vnf_id: "vth"
+    vnf_vendor: "a10networks"
+    vnf_name: "vth-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "spirent"
+    vnf_vendor: "spirent"
+    vnf_name: "stcv-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "nginx"
+    vnf_vendor: "nginx"
+    vnf_name: "nginx"
+    vnf_version: "0.1"
+
+connection_points:
+  - id: "mgmt"
+    interface: "ipv4"
+    type: "management"
+
+# service_specific_managers:
+# - description: placement SSM.
+#   id: sonssmvforwardplacement1
+#   image: tsoenen/policy-based-placement
+#   options:
+#   - key: type
+#     value: placement
+
+virtual_links:
+  - id: "vlmgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vth:cpmgmt"
+      - "spirent:cpmgmt"
+      - "nginx:cpmgmt"
+      - "mgmt"
+  - id: "vlwest"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "spirent:cpoutput"
+      - "vth:cpwest"
+  - id: "vleast"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "nginx:cpinout"
+      - "vth:cpeast"
