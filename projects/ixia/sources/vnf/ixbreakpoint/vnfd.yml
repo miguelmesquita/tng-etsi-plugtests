@@ -4,10 +4,10 @@
 ##
 descriptor_version: "vnfd-schema-01"
 vendor: "ixia"
-name: "stcv-vnf"
+name: "ixbreakpoint-vnf"
 version: "0.1"
 author: "alberto-m-rocha@alticelabs.com"
-description: "Ixia VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php/Keysight"
+description: "Ixia Breakpoint VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php/Keysight"
 ##
 ## The virtual deployment unit.
 ##
