@@ -9,9 +9,17 @@ description: "Ixia package Descriptor"
 ## The various network functions this service is composed of
 ##
 network_functions:
-  - vnf_id: "vnf_ixia"
+  - vnf_id: "vnf_ixnetwork"
     vnf_vendor: "ixia"
-    vnf_name: "ixia-vnf"
+    vnf_name: "ixnetwork-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "vnf_ixload"
+    vnf_vendor: "ixia"
+    vnf_name: "ixload-vnf"
+    vnf_version: "0.1"
+  - vnf_id: "vnf_ixbreakpoint"
+    vnf_vendor: "ixia"
+    vnf_name: "ixbreakpoint-vnf"
     vnf_version: "0.1"
 
 ##
@@ -32,47 +40,58 @@ connection_points:
 ## The virtual links that interconnect the different connections points
 ##
 virtual_links:
-  - id: "vlmgmt"
+  - id: "mgmt"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vnf_ixia:nscpmgmt"
-      - "nscpmgmt"
-  - id: "vlinput"
+      - "vnf_ixnetwork:mgmt"
+      - "vnf_ixload:mgmt"
+      - "vnf_ixbreakpoint:mgmt"
+      - "mgmt"
+  - id: "input-2-ixnetwork"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "nscpinput"
-      - "vnf_ixia:ncpinput"
-  - id: "vloutput"
+      - "input"
+      - "vnf_ixnetwork:inout"
+  - id: "ixnetwork-2-ixload"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vnf_ixia:ncpoutput"
-      - "nscpoutput"
-
+      - "vnf_ixnetwork:inout"
+      - "vnf_ixload:inout"
+  - id: "ixload-2-ixbreakpoint"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ixload:inout"
+      - "vnf_ixbreakpoint:inout"
+  - id: "ixbreakpoint-2-output"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ixbreakpoint:cpoutput"
+      - "output"
 
 
 ##
 ## The forwarding graphs.
 ##
-forwarding_graphs:
-  - fg_id: "fg01"
-    number_of_endpoints: 2
-    number_of_virtual_links: 3
-    constituent_virtual_links:
-      - "vlmgmt"
-      - "vlinput"
-      - "vloutput"
-    constituent_vnfs:
-      - "vnf_ixia"
-    network_forwarding_paths:
-      - fp_id: "fg01:fp01"
-        policy: "none"
-        connection_points:
-          - connection_point_ref: "nscpinput"
-            position: 1
-          - connection_point_ref: "vnf_ixia:ncpinput"
-            position: 2
-          - connection_point_ref: "vnf_ixia:ncpoutput"
-            position: 3
-          - connection_point_ref: "nscpoutput"
-            position: 4
+#forwarding_graphs:
+#  - fg_id: "fg01"
+#    number_of_endpoints: 2
+#    number_of_virtual_links: 3
+#    constituent_virtual_links:
+#      - "vlmgmt"
+#      - "vlinput"
+#      - "vloutput"
+#    constituent_vnfs:
+#      - "vnf_ixia"
+#    network_forwarding_paths:
+#      - fp_id: "fg01:fp01"
+#        policy: "none"
+#        connection_points:
+#          - connection_point_ref: "nscpinput"
+#            position: 1
+#          - connection_point_ref: "vnf_ixia:ncpinput"
+#            position: 2
+#          - connection_point_ref: "vnf_ixia:ncpoutput"
+#            position: 3
+#          - connection_point_ref: "nscpoutput"
+#            position: 4
 
