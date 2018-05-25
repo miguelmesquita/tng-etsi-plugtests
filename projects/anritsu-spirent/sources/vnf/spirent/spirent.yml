@@ -3,33 +3,33 @@
 ## VNF descriptor.
 ##
 descriptor_version: "vnfd-schema-01"
-vendor: "anritsu"
-name: "avp-vnf"
+vendor: "spirent"
+name: "stcv-vnf"
 version: "0.1"
 author: "Felipe Vicens :@ ATOS"
-description: "Anritsu Master Claw 7.1 virtual-probe"
+description: "Spirent Master Claw 7.1 virtual-probe"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1//VNFs/Anritsu/vprobe_5/virtual-probe_img_os-0.1.0.005.qcow2"
+    vm_image: "http://www.google.com"
     vm_image_format: "qcow2"
-    vm_image_md5: '0b1952945205441192095019697b13a1'
+    vm_image_md5: '16dd12fb8ca246cfca2259d2df435640'
     resource_requirements:
       cpu:
-        vcpus: 4
+        vcpus: 1
       memory:
         size: 4
         size_unit: "GB"
       storage:
-        size: 100
+        size: 12
         size_unit: "GB"
     connection_points:
-      - id: "eth0"
+      - id: "mgmt"
         interface: "ipv4"
         type: "management"
-      - id: "input"
+      - id: "output"
         interface: "ipv4"
         type: "internal"
 
@@ -40,14 +40,13 @@ virtual_links:
   - id: "mgmt"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vdu01:eth0"
+      - "vdu01:mgmt"
       - "cpmgmt"
-  - id: "input"
-    connectivity_type: "E-LAN"
+  - id: "output"
+    connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:input"
-      - "cpinput"
- #     - "cpoutput"
+      - "vdu01:output"
+      - "cpoutput"
 
 ##
 ## The VNF connection points to the
@@ -57,14 +56,14 @@ connection_points:
   - id: "cpmgmt"
     interface: "ipv4"
     type: "management"
-  - id: "cpinput"
+  - id: "cpoutput"
     interface: "ipv4"
-    type: "external"
+    type: "internal"
 
-function_specific_managers:
-  - id: "sonfsmplugtestanritsucss1"
-    description: "FSM to do a first FSM test"
-    image: "sonatanfv/plugtest-anritsu-fsm-css"
-    options:
-      - key: "type"
-        value: "start"
+#function_specific_managers:
+#  - id: "sonfsmplugtestspirentcss1"
+#    description: "FSM to do a first FSM test"
+#    image: "sonatanfv/plugtest-spirent-fsm-css"
+#    options:
+#      - key: "type"
+#        value: "start"
