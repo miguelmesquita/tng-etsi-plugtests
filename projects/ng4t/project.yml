@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: ETSI Plugtest NG4T
+  maintainer: Carlos Parada, Altice Labs, carlos-f-parada@alticelabs.com
+  name: "etsi-ng4t"
+  vendor: "ng4t"
+  version: "0.1"
+version: "0.5"

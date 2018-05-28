@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: ETSI Plugtest EANTC VNF
+  maintainer: Alberto Rocha, Altice Labs (alberto-m-rocha@alticelabs.com)
+  name: "etsi-eantc"
+  vendor: "eantc"
+  version: "0.1"
+version: '0.5'
