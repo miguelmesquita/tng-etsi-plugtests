@@ -115,7 +115,7 @@ virtual_deployment_units:
       - id: "if0"
         interface: "ipv4"
         type: "internal"
-      - id: "if1"
+      - id: "output"
         interface: "ipv4"
         type: "external"
     user_data: |
