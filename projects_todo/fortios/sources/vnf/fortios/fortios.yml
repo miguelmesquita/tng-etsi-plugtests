@@ -1,0 +1,85 @@
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "fortios"
+name: "fort-vnf"
+version: "0.1"
+author: "Felipe Vicens :@ ATOS"
+description: "FortiOS VNF"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://www.google.com"
+    vm_image_format: "qcow2"
+    vm_image_md5: '353c429e269684e4bb59e1b013b2cf1b'
+    resource_requirements:
+      cpu:
+        vcpus: 4
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 100
+        size_unit: "GB"  
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "management"
+      - id: "west"
+        interface: "ipv4"
+        type: "external"
+      - id: "east"
+        interface: "ipv4"
+        type: "external"
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth0"
+      - "cpmgmt"
+  - id: "inside"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth1"
+      - "vdu02:eth1"
+  - id: "easter"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:east"
+      - "cpinput"
+  - id: "wester"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:west"
+      - "cpinput1"
+ #     - "cpinput1"
+
+##
+## The VNF connection points to the
+## outside world.
+##
+connection_points:
+  - id: "cpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "cpinput"
+    interface: "ipv4"
+    type: "external"
+  - id: "cpinput1"
+    interface: "ipv4"
+    type: "external"
+
+#function_specific_managers:
+#  - id: "sonfsmplugtestanritsucss1"
+#    description: "FSM to do a first FSM test"
+#    image: "sonatanfv/plugtest-anritsu-fsm-css"
+#    options:
+#      - key: "type"
+#        value: "start"
