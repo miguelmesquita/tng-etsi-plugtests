@@ -29,7 +29,31 @@ virtual_deployment_units:
       - id: "eth0"
         interface: "ipv4"
         type: "management"
-      - id: "input"
+      - id: "eth1"
+        interface: "ipv4"
+        type: "internal"
+      - id: "eth2"
+        interface: "ipv4"
+        type: "external"
+
+  - id: "vdu02"
+    vm_image: "http://172.22.1.1//VNFs/Anritsu/vprobe_5/virtual-probe_img_os-0.1.0.005.qcow2"
+    vm_image_format: "qcow2"
+    vm_image_md5: '0b1952945205441192095019697b13a1'
+    resource_requirements:
+      cpu:
+        vcpus: 1
+      memory:
+        size: 2
+        size_unit: "GB"
+      storage:
+        size: 50
+        size_unit: "GB"
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "management"
+      - id: "eth1"
         interface: "ipv4"
         type: "internal"
 
@@ -41,11 +65,17 @@ virtual_links:
     connectivity_type: "E-LAN"
     connection_points_reference:
       - "vdu01:eth0"
+      - "vdu02:eth0"
       - "cpmgmt"
-  - id: "input"
+  - id: "inside"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vdu01:input"
+      - "vdu01:eth1"
+      - "vdu02:eth1"
+  - id: "monitor"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth2"
       - "cpinput"
  #     - "cpoutput"
 
