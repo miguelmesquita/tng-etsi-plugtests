@@ -10,10 +10,14 @@ description: "Descriptor to package Italtel iRPS-CI"
 ## is composed of.
 ##
 network_functions:
-  - vnf_id: "vnf_irps_ci"
+  - vnf_id: "italtel"
     vnf_vendor: "italtel"
     vnf_name: "irps-ci"
     vnf_version: "0.5"
+  - vnf_id: "anritsu"
+    vnf_vendor: "anritsu"
+    vnf_name: "avp-vnf"
+    vnf_version: "0.1"
 
 ##
 ## The NS connection points to the
@@ -23,9 +27,6 @@ connection_points:
   - id: "nscpvl1"
     interface: "ipv4"
     type: "management"
-  - id: "nscpvl2"
-    interface: "ipv4"
-    type: "internal"
 
 ##
 ## The virtual links that interconnect
@@ -35,11 +36,12 @@ virtual_links:
   - id: "vl1"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vnf_irps_ci:cpvl1"
+      - "italtel:cpvl1"
+      - "anritsu:cpmgmt"
       - "nscpvl1"
   - id: "vl2"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vnf_irps_ci:cpvl2"
-      - "nscpvl2"
+      - "italtel:cpvl2"
+      - "aritsu:cpinput"
 
