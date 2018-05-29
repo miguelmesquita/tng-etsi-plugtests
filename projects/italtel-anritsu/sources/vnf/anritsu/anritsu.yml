@@ -1,0 +1,107 @@
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "anritsu"
+name: "avp-vnf"
+version: "0.1"
+author: "Felipe Vicens :@ ATOS"
+description: "Anritsu Master Claw 7.1 virtual-probe"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://www.google.com"
+    vm_image_format: "qcow2"
+    vm_image_md5: '0b1952945205441192095019697b13a1'
+    resource_requirements:
+      cpu:
+        vcpus: 4
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 100
+        size_unit: "GB"  
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "management"
+      - id: "eth1"
+        interface: "ipv4"
+        type: "internal"
+      - id: "eth2"
+        interface: "ipv4"
+        type: "external"
+    user_data: |
+      #!/bin/bash
+      f="/etc/anritsu/platform/mc_registration"
+      echo -e "mcdomain=default.masterclaw\nserverurl=https://172.22.10.11:8033/mcregserver" > $f
+      
+  - id: "vdu02"
+    vm_image: "http://www.google.com"
+    vm_image_format: "qcow2"
+    vm_image_md5: '0b1952945205441192095019697b13a1'
+    resource_requirements:
+      cpu:
+        vcpus: 1
+      memory:
+        size: 2
+        size_unit: "GB"
+      storage:
+        size: 50
+        size_unit: "GB"
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "management"
+      - id: "eth1"
+        interface: "ipv4"
+        type: "internal"
+    user_data: |
+      #!/bin/bash
+      echo "prb_ip_addr" > /etc/anritsu/platform/prb_ipaddr
+
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth0"
+      - "vdu02:eth0"
+      - "cpmgmt"
+  - id: "inside"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth1"
+      - "vdu02:eth1"
+  - id: "monitor"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth2"
+      - "cpinput"
+ #     - "cpoutput"
+
+##
+## The VNF connection points to the
+## outside world.
+##
+connection_points:
+  - id: "cpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "cpinput"
+    interface: "ipv4"
+    type: "external"
+
+function_specific_managers:
+  - id: "sonfsmplugtestanritsucss1"
+    description: "FSM to do a first FSM test"
+    image: "sonatanfv/plugtest-anritsu-fsm-css"
+    options:
+      - key: "type"
+        value: "start"
