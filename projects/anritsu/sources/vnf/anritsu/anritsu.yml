@@ -25,6 +25,7 @@ virtual_deployment_units:
       storage:
         size: 100
         size_unit: "GB"
+    use    
     connection_points:
       - id: "eth0"
         interface: "ipv4"
@@ -35,6 +36,11 @@ virtual_deployment_units:
       - id: "eth2"
         interface: "ipv4"
         type: "external"
+    user_data: |
+      #!/bin/bash
+      f="/etc/anritsu/platform/mc_registration"
+      echo -e "mcdomain=default.masterclaw\nserverurl=https://172.22.10.11:8033/mcregserver" > $f
+      
 
   - id: "vdu02"
     vm_image: "http://172.22.1.1//VNFs/Anritsu/vprobe_5/virtual-probe_img_os-0.1.0.005.qcow2"
@@ -56,6 +62,9 @@ virtual_deployment_units:
       - id: "eth1"
         interface: "ipv4"
         type: "internal"
+    user data: |
+      #!/bin/bash
+      echo "prb_ip_addr" > /etc/anritsu/platform/prb_ipaddr
 
 ## The virtual links that interconnect
 ## the different connections points.
