@@ -34,6 +34,28 @@ virtual_deployment_units:
       - id: "if1"
         interface: "ipv4"
         type: "management"
+    user_data: |
+      set_hostname: oam
+      fqdn: oam.default.italtel.com
+      ssh_pwauth: true
+      system_info:
+        default_user:
+          name: italtel
+          lock_passwd: false
+      runcmd:
+        - mkdir /etc/italtel/fileBakup
+        - cp -p /etc/hosts /etc/italtel/fileBakup/
+        - cp -p /etc/resolv.conf /etc/italtel/fileBakup/
+        - cp -p /etc/corosync/corosync.conf /etc/italtel/fileBakup
+        - cp -p /etc/italtel/haconfig.xml /etc/italtel/fileBakup
+        - cp -p /etc/named.conf /etc/italtel/fileBakup
+        - cp -p /var/named/data/db.default.italtel.com /etc/italtel/fileBakup
+        - cp -p /var/lib/cloud/data/previous-hostname /etc/italtel/fileBakup
+        - hostname > /var/lib/cloud/data/previous-hostname
+        - /usr/local/bin/ext_net_up
+        - /tmp/get_ip_oam.sh
+        - chmod 755 /tmp/vars_oam.ns
+        - /tmp/oam.sh
 
     # IBCF
   - id: "vdu02"
@@ -53,7 +75,26 @@ virtual_deployment_units:
       - id: "if0"
         interface: "ipv4"
         type: "internal"
-
+    user_data: |
+      set_hostname: sig-0
+      fqdn: sig-0.default.italtel.com
+      ssh_pwauth: true
+      system_info:
+        default_user:
+          name: italtel
+          lock_passwd: false
+      runcmd:
+        - mkdir /etc/italtel/
+        - mkdir /etc/italtel/fileBakup
+        - cp -p /etc/hosts /etc/italtel/fileBakup
+        - cp -p /etc/resolv.conf /etc/italtel/fileBakup
+        - cp -p /etc/sysconfig/network /etc/italtel/fileBakup
+        - cp -p /var/lib/cloud/data/previous-hostname /etc/italtel/fileBakup
+        - hostname > /var/lib/cloud/data/previous-hostname
+        - /tmp/get_ip_ibcf.sh
+        - chmod 755 /tmp/vars_sig.ns
+        - /tmp/ibcf.sh
+        - setenforce 0
     # FELB
   - id: "vdu03"
     vm_image: "http://www.google.com"
@@ -75,7 +116,24 @@ virtual_deployment_units:
       - id: "if1"
         interface: "ipv4"
         type: "external"
-
+    user_data: |
+      set_hostname: felb
+      fqdn: felb.default.italtel.com
+      ssh_pwauth: true
+      system_info:
+        default_user:
+          name: italtel
+          lock_passwd: false
+      runcmd:
+        - touch /etc/italtel/disable_dps
+        - mkdir /etc/italtel/fileBakup
+        - cp -p /etc/hosts /etc/italtel/fileBakup
+        - cp -p /etc/resolv.conf /etc/italtel/fileBakup
+        - cp -p /var/lib/cloud/data/previous-hostname /etc/italtel/fileBakup
+        - hostname > /var/lib/cloud/data/previous-hostname
+        - /tmp/get_ip_felb.sh
+        - chmod 755 /tmp/vars_felb.ns
+        - /tmp/felb.sh
     # DB
   - id: "vdu04"
     vm_image: "http://www.google.com"
@@ -94,6 +152,25 @@ virtual_deployment_units:
       - id: "if0"
         interface: "ipv4"
         type: "internal"
+    user_data: |
+      set_hostname: states
+      fqdn: states.default.italtel.com
+      ssh_pwauth: true
+      system_info:
+        default_user:
+          name: italtel
+          lock_passwd: false
+      runcmd:
+        - mkdir /etc/italtel/
+        - mkdir /etc/italtel/fileBakup
+        - cp -p /etc/hosts /etc/italtel/fileBakup/.
+        - cp -p /etc/resolv.conf /etc/italtel/fileBakup
+        - cp -p /var/lib/cloud/data/previous-hostname /etc/italtel/fileBakup
+        - hostname > /var/lib/cloud/data/previous-hostname
+        - /tmp/get_ip_db.sh
+        - chmod 755 /tmp/vars_db.ns
+        - /tmp/db.sh
+        - setenforce 0
 
 ##
 ## The virtual links that interconnect
