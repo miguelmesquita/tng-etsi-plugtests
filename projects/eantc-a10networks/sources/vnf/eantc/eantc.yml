@@ -32,7 +32,7 @@ virtual_deployment_units:
       - id: "cpinput"
         interface: "ipv4"
         type: "internal"
-      - id: "output"
+      - id: "input"
         interface: "ipv4"
         type: "internal"
 
@@ -53,7 +53,7 @@ virtual_links:
   - id: "output"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:output"
+      - "vdu01:input"
       - "cpoutput"
 
 ##
