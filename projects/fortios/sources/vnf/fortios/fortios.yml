@@ -18,12 +18,12 @@ virtual_deployment_units:
     vm_image_md5: '353c429e269684e4bb59e1b013b2cf1b'
     resource_requirements:
       cpu:
-        vcpus: 4
+        vcpus: 2
       memory:
         size: 4
         size_unit: "GB"
       storage:
-        size: 100
+        size: 10
         size_unit: "GB"  
     connection_points:
       - id: "eth0"
@@ -35,6 +35,51 @@ virtual_deployment_units:
       - id: "output"
         interface: "ipv4"
         type: "internal"
+    user_data: |
+      config system interface
+      edit mgmt
+      set mode dhcp
+      set allowaccess ping https ssh http snmp fgfm
+      set defaultgw enable 
+      next
+      edit port1
+      set mode dhcp
+      set allowaccess ping
+      set defaultgw disable 
+      next
+      edit port2
+      set mode dhcp
+      set allowaccess ping
+      set defaultgw disable 
+      next
+      end
+      config system dns
+      set primary 8.8.8.8
+      end
+      config firewall policy
+      edit 1
+      set name "Allow any any"
+      set srcintf "any"
+      set dstintf "any"
+      set srcaddr "all"
+      set dstaddr "all"
+      set action accept
+      set schedule "always"
+      set service "ALL"
+      set nat enable
+      next
+      end
+      config system central-management
+      set include-default-servers disable
+      set type fortimanager
+      set fmg 172.22.28.40
+      config server-list
+      edit 1
+      set server-type update rating
+      set server-address 172.22.28.40
+      end
+      end
+      execute central-mgmt register-device FMG-VM0A17007268 plugtest
 ## The virtual links that interconnect
 ## the different connections points.
 ##
