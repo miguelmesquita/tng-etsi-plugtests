@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="level" attr.type="long" for="edge" id="d8" />
+  <key attr.name="type" attr.type="string" for="edge" id="d7" />
+  <key attr.name="label" attr.type="string" for="edge" id="d6" />
+  <key attr.name="type" attr.type="string" for="node" id="d5" />
+  <key attr.name="node_id" attr.type="string" for="node" id="d4" />
+  <key attr.name="label" attr.type="string" for="node" id="d3" />
+  <key attr.name="parent_id" attr.type="string" for="node" id="d2" />
+  <key attr.name="level" attr.type="long" for="node" id="d1" />
+  <key attr.name="node_label" attr.type="string" for="node" id="d0" />
+  <graph edgedefault="undirected">
+    <node id="output">
+      <data key="d0">ixia</data>
+      <data key="d1">0</data>
+      <data key="d2" />
+      <data key="d3">output</data>
+      <data key="d4">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d5">iface</data>
+    </node>
+    <node id="vnf_ixload:cpoutput">
+      <data key="d0">ixload-vnf</data>
+      <data key="d1">1</data>
+      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d3">cpoutput</data>
+      <data key="d4">ixia.ixload-vnf.0.1</data>
+      <data key="d5">iface</data>
+    </node>
+    <node id="vnf_ixnetwork:cpoutput">
+      <data key="d0">ixnetwork-vnf</data>
+      <data key="d1">1</data>
+      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d3">cpoutput</data>
+      <data key="d4">ixia.ixnetwork-vnf.0.1</data>
+      <data key="d5">iface</data>
+    </node>
+    <node id="input">
+      <data key="d0">ixia</data>
+      <data key="d1">0</data>
+      <data key="d2" />
+      <data key="d3">input</data>
+      <data key="d4">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d5">iface</data>
+    </node>
+    <node id="vnf_ixbreakpoint:cpoutput">
+      <data key="d0">ixbreakpoint-vnf</data>
+      <data key="d1">1</data>
+      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d3">cpoutput</data>
+      <data key="d4">ixia.ixbreakpoint-vnf.0.1</data>
+      <data key="d5">iface</data>
+    </node>
+    <node id="vnf_ixnetwork:vdu01">
+      <data key="d0">vdu01</data>
+      <data key="d1">2</data>
+      <data key="d2">ixia.ixnetwork-vnf.0.1</data>
+      <data key="d3">output</data>
+      <data key="d4">vdu01</data>
+      <data key="d5">iface</data>
+    </node>
+    <node id="vnf_ixbreakpoint:vdu01">
+      <data key="d0">vdu01</data>
+      <data key="d1">2</data>
+      <data key="d2">ixia.ixbreakpoint-vnf.0.1</data>
+      <data key="d3">output</data>
+      <data key="d4">vdu01</data>
+      <data key="d5">iface</data>
+    </node>
+    <node id="vnf_ixload:vdu01" />
+    <edge source="output" target="vnf_ixbreakpoint:cpoutput">
+      <data key="d6">ixbreakpoint-2-output</data>
+      <data key="d7">iface</data>
+      <data key="d8">1</data>
+    </edge>
+    <edge source="vnf_ixload:cpoutput" target="vnf_ixbreakpoint:cpoutput">
+      <data key="d6">ixload-2-ixbreakpoint</data>
+      <data key="d7">iface</data>
+      <data key="d8">1</data>
+    </edge>
+    <edge source="vnf_ixload:cpoutput" target="vnf_ixnetwork:cpoutput">
+      <data key="d6">ixnetwork-2-ixload</data>
+      <data key="d7">iface</data>
+      <data key="d8">1</data>
+    </edge>
+    <edge source="vnf_ixload:cpoutput" target="vnf_ixload:vdu01">
+      <data key="d6">output</data>
+      <data key="d8">1</data>
+      <data key="d7">iface</data>
+    </edge>
+    <edge source="vnf_ixnetwork:cpoutput" target="input">
+      <data key="d6">input-2-ixnetwork</data>
+      <data key="d7">iface</data>
+      <data key="d8">1</data>
+    </edge>
+    <edge source="vnf_ixnetwork:cpoutput" target="vnf_ixnetwork:vdu01">
+      <data key="d6">output</data>
+      <data key="d8">1</data>
+      <data key="d7">iface</data>
+    </edge>
+    <edge source="vnf_ixbreakpoint:cpoutput" target="vnf_ixbreakpoint:vdu01">
+      <data key="d6">output</data>
+      <data key="d8">1</data>
+      <data key="d7">iface</data>
+    </edge>
+  </graph>
+</graphml>

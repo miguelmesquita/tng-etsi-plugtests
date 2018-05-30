@@ -103,29 +103,3 @@ forwarding_graphs:
           - connection_point_ref: "output"
             position: 8
 
-##
-## The forwarding graphs.
-##
-#forwarding_graphs:
-#  - fg_id: "fg01"
-#    number_of_endpoints: 2
-#    number_of_virtual_links: 3
-#    constituent_virtual_links:
-#      - "vlmgmt"
-#      - "vlinput"
-#      - "vloutput"
-#    constituent_vnfs:
-#      - "vnf_ixia"
-#    network_forwarding_paths:
-#      - fp_id: "fg01:fp01"
-#        policy: "none"
-#        connection_points:
-#          - connection_point_ref: "nscpinput"
-#            position: 1
-#          - connection_point_ref: "vnf_ixia:ncpinput"
-#            position: 2
-#          - connection_point_ref: "vnf_ixia:ncpoutput"
-#            position: 3
-#          - connection_point_ref: "nscpoutput"
-#            position: 4
-

@@ -13,9 +13,10 @@ description: "Ixia Network VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/VNFs/Ixia/IXIA.qcow2"
+    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/IxiaKeysight/Ixia_Virtual_Test_Appliance_8.40_EA_KVM.qcow2"
+#    vm_image: "http://www.google.com"
     vm_image_format: "qcow2"
-    vm_image_md5: '16dd12fb8ca246cfca2259d2df435640'
+    vm_image_md5: '00898e43557d1af7837b486322e2c7f6'
     resource_requirements:
       cpu:
         vcpus: 2
