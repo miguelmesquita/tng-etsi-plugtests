@@ -7,28 +7,31 @@ vendor: "eantc"
 name: "eantc-vnf"
 version: "0.1"
 author: "alberto-m-rocha@alticelabs.com"
-description: "EANTC VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php/EANTC"
+description: "EANTC Test Automation Tool VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php/EANTC"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/EANTC/EANTC_TestVNF-1.vmdk"
+    vm_image: "http://www.google.com"
     vm_image_format: "qcow2"
-    vm_image_md5: 'aec3e0c3a204b236994b5efd042f5283'
+    vm_image_md5: 'a39040f82ea9241f8ab3105c7b5ee275'
     resource_requirements:
       cpu:
-        vcpus: 2
+        vcpus: 4
       memory:
         size: 4
         size_unit: "GB"
       storage:
-        size: 40
+        size: 15
         size_unit: "GB"
     connection_points:
       - id: "mgmt"
         interface: "ipv4"
         type: "management"
+      - id: "cpinput"
+        interface: "ipv4"
+        type: "internal"
       - id: "output"
         interface: "ipv4"
         type: "internal"
@@ -40,7 +43,7 @@ virtual_links:
   - id: "mgmt"
     connectivity_type: "E-LAN"
     connection_points_reference:
-      - "vdu01:cpmgmt"
+      - "vdu01:mgmt"
       - "cpmgmt"
   - id: "input"
     connectivity_type: "E-Line"
@@ -50,7 +53,7 @@ virtual_links:
   - id: "output"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:cpoutput"
+      - "vdu01:output"
       - "cpoutput"
 
 ##
@@ -68,12 +71,12 @@ connection_points:
     interface: "ipv4"
     type: "internal"
 
-function_specific_managers:
-  - id: "sonfsmplugtesteantccss1"
-    description: "FSM to do a first FSM test"
-    image: "sonatanfv/plugtest-eantc-fsm-css"
-    options:
-      - key: "type"
-        value: "start"
-      - key: "type"
-        value: "configure"
+# function_specific_managers:
+#   - id: "sonfsmplugtesteantccss1"
+#     description: "FSM to do a first FSM test"
+#     image: "sonatanfv/plugtest-eantc-fsm-css"
+#     options:
+#       - key: "type"
+#         value: "start"
+#       - key: "type"
+#         value: "configure"

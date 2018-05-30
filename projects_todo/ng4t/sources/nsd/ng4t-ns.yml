@@ -1,0 +1,96 @@
+descriptor_version: "1.0"
+vendor: "ng4t.service-descriptor"
+name: "ng4t-ns"
+version: "0.5"
+author: "Carlos Parada"
+description: "Descriptor to package NG4T"
+
+##
+## The various network functions this service
+## is composed of.
+##
+network_functions:
+  - vnf_id: "vnf_ng40"
+    vnf_vendor: "ng4t"
+    vnf_name: "ng40-vtester"
+    vnf_version: "0.5"
+
+##
+## The NS connection points to the
+## outside world.
+##
+connection_points:
+  - id: "nscpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "nscps11"
+    interface: "ipv4"
+    type: "internal"
+  - id: "nscpspare"
+    interface: "ipv4"
+    type: "internal"
+  - id: "nscps1mme"
+    interface: "ipv4"
+    type: "internal"
+  - id: "nscps1u"
+    interface: "ipv4"
+    type: "internal"
+  - id: "nscps5"
+    interface: "ipv4"
+    type: "internal"
+  - id: "nscps6"
+    interface: "ipv4"
+    type: "internal"
+  - id: "nscpsgi"
+    interface: "ipv4"
+    type: "internal"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "vlmgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vnf_ng40:cpmgmt"
+      - "nscpmgmt"
+  - id: "vls11"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ng40:cps11"
+      - "nscps11"
+  - id: "vlspare"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ng40:cpspare"
+      - "nscpspare"
+  - id: "vls1mme"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ng40:cps1mme"
+      - "nscps1mme"
+  - id: "vls1u"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ng40:cps1u"
+      - "nscps1u"
+  - id: "vls5"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ng40:cps5"
+      - "nscps5"
+  - id: "vldia"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ng40:cps6"
+      - "nscps6"
+  - id: "vlsgi"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_ng40:cpsgi"
+      - "nscpsgi"
+
+
+
+

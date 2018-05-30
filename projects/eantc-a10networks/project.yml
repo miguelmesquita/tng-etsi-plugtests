@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: "eantc - a10 networks"
+  maintainer: Thomas Soenen
+  name: "eantc-a10networks"
+  vendor: "plugtest"
+  version: "0.1"
+version: '0.5'

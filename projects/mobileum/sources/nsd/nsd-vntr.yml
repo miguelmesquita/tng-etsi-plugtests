@@ -1,0 +1,67 @@
+##
+## This is a mobileum network service descriptor
+## that comprises only the mobileum VNF
+## TODO: replace/modify this mobileum to a more comprehensive example
+
+descriptor_version: "1.0"
+vendor: "mobileum.service-descriptor"
+name: "vntr"
+version: "0.5"
+author: "Alberto Rocha, Altice Labs, alberto-m-rocha@alticelabs.com"
+description: "Mobileum vNTR NS (www.mobileum.com)"
+
+##
+## The various network functions this service
+## is composed of.
+##
+network_functions:
+  - vnf_id: "sim_vnf"
+    vnf_vendor: "mobileum"
+    vnf_name: "vnf-sim"
+    vnf_version: "0.1"
+  - vnf_id: "vntr_vnf"
+    vnf_vendor: "mobileum"
+    vnf_name: "vnf-vntr"
+    vnf_version: "0.1"
+
+##
+## The NS connection points to the 
+## outside world.
+##
+connection_points:
+  - id: "cp-in"
+    interface: "ipv4"
+    type: "internal"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "vl-in"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "cp-in"
+      - "sim_vnf:cp-vl-in"
+
+##
+## The forwarding graphs.
+##
+#forwarding_graphs:
+#  - fg_id: "ns:fg01"
+#    number_of_endpoints: 2
+#    number_of_virtual_links: 4
+#    constituent_vnfs:
+#      - "vnf_mobileum"
+#    network_forwarding_paths:
+#      - fp_id: "ns:fg01:fp01"
+#        policy: "none"
+#        connection_points:
+#          - connection_point_ref: "cp-in"
+#            position: 1
+#          - connection_point_ref: "mobileum_vnf:cp-in"
+#            position: 2
+#          - connection_point_ref: "mobileum_vnf:cp-out"
+#            position: 3
+#          - connection_point_ref: "cp-out"
+#            position: 4

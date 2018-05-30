@@ -1,0 +1,124 @@
+##
+## Some general information regarding this
+## VNF descriptor.
+##
+descriptor_version: "vnfd-schema-01"
+vendor: "fortios"
+name: "fort-vnf"
+version: "0.1"
+author: "Felipe Vicens :@ ATOS"
+description: "FortiOS VNF"
+##
+## The virtual deployment unit.
+##
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://www.google.com"
+    vm_image_format: "qcow2"
+    vm_image_md5: '353c429e269684e4bb59e1b013b2cf1b'
+    resource_requirements:
+      cpu:
+        vcpus: 2
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 10
+        size_unit: "GB"  
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "management"
+      - id: "west"
+        interface: "ipv4"
+        type: "internal"
+      - id: "output"
+        interface: "ipv4"
+        type: "internal"
+    user_data: |
+      config system interface
+      edit mgmt
+      set mode dhcp
+      set allowaccess ping https ssh http snmp fgfm
+      set defaultgw enable 
+      next
+      edit port1
+      set mode dhcp
+      set allowaccess ping
+      set defaultgw disable 
+      next
+      edit port2
+      set mode dhcp
+      set allowaccess ping
+      set defaultgw disable 
+      next
+      end
+      config system dns
+      set primary 8.8.8.8
+      end
+      config firewall policy
+      edit 1
+      set name "Allow any any"
+      set srcintf "any"
+      set dstintf "any"
+      set srcaddr "all"
+      set dstaddr "all"
+      set action accept
+      set schedule "always"
+      set service "ALL"
+      set nat enable
+      next
+      end
+      config system central-management
+      set include-default-servers disable
+      set type fortimanager
+      set fmg 172.22.28.40
+      config server-list
+      edit 1
+      set server-type update rating
+      set server-address 172.22.28.40
+      end
+      end
+      execute central-mgmt register-device FMG-VM0A17007268 plugtest
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth0"
+      - "cpmgmt"
+  - id: "easter"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:east"
+      - "east"
+  - id: "wester"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:output"
+      - "west"
+
+##
+## The VNF connection points to the
+## outside world.
+##
+connection_points:
+  - id: "cpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "east"
+    interface: "ipv4"
+    type: "external"
+  - id: "west"
+    interface: "ipv4"
+    type: "external"
+
+#function_specific_managers:
+#  - id: "sonfsmplugtestanritsucss1"
+#    description: "FSM to do a first FSM test"
+#    image: "sonatanfv/plugtest-anritsu-fsm-css"
+#    options:
+#      - key: "type"
+#        value: "start"

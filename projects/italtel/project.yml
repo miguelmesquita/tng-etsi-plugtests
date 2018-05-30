@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: ETSI Plugtest Italtel iRPS-CI
+  maintainer: Carlos Parada, Altice Labs, carlos-f-parada@alticelabs.com
+  name: "irps-ci"
+  vendor: "italtel"
+  version: "0.1"
+version: "0.5"

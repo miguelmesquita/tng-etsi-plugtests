@@ -1,0 +1,8 @@
+descriptor_extension: yml
+package:
+  description: "Spirent - a10networks - nginx"
+  maintainer: Thomas Soenen
+  name: "spirent-a10networks-nginx"
+  vendor: "plugtest"
+  version: "0.1"
+version: '0.5'
