@@ -3,205 +3,205 @@
   <key attr.name="level" attr.type="long" for="edge" id="d8" />
   <key attr.name="type" attr.type="string" for="edge" id="d7" />
   <key attr.name="label" attr.type="string" for="edge" id="d6" />
-  <key attr.name="type" attr.type="string" for="node" id="d5" />
+  <key attr.name="node_label" attr.type="string" for="node" id="d5" />
   <key attr.name="node_id" attr.type="string" for="node" id="d4" />
   <key attr.name="label" attr.type="string" for="node" id="d3" />
-  <key attr.name="parent_id" attr.type="string" for="node" id="d2" />
-  <key attr.name="level" attr.type="long" for="node" id="d1" />
-  <key attr.name="node_label" attr.type="string" for="node" id="d0" />
+  <key attr.name="level" attr.type="long" for="node" id="d2" />
+  <key attr.name="parent_id" attr.type="string" for="node" id="d1" />
+  <key attr.name="type" attr.type="string" for="node" id="d0" />
   <graph edgedefault="undirected">
-    <node id="output">
-      <data key="d0">ixia</data>
-      <data key="d1">0</data>
-      <data key="d2" />
-      <data key="d3">output</data>
-      <data key="d4">ixia.service-descriptor.ixia.0.1</data>
-      <data key="d5">iface</data>
-    </node>
-    <node id="vnf_ixload:cpoutput">
-      <data key="d0">ixload-vnf</data>
-      <data key="d1">1</data>
-      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
-      <data key="d3">cpoutput</data>
-      <data key="d4">ixia.ixload-vnf.0.1</data>
-      <data key="d5">iface</data>
-    </node>
-    <node id="vnf_ixnetwork:cpoutput">
-      <data key="d0">ixnetwork-vnf</data>
-      <data key="d1">1</data>
-      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
-      <data key="d3">cpoutput</data>
-      <data key="d4">ixia.ixnetwork-vnf.0.1</data>
-      <data key="d5">iface</data>
-    </node>
-    <node id="vnf_ixbreakpoint:cpmgmt">
-      <data key="d0">ixbreakpoint-vnf</data>
-      <data key="d1">1</data>
-      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
-      <data key="d3">cpmgmt</data>
-      <data key="d4">ixia.ixbreakpoint-vnf.0.1</data>
-      <data key="d5">br-iface</data>
-    </node>
-    <node id="vnf_ixbreakpoint:cpoutput">
-      <data key="d0">ixbreakpoint-vnf</data>
-      <data key="d1">1</data>
-      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
-      <data key="d3">cpoutput</data>
-      <data key="d4">ixia.ixbreakpoint-vnf.0.1</data>
-      <data key="d5">iface</data>
-    </node>
-    <node id="vnf_ixnetwork:vdu01">
-      <data key="d0">vdu01</data>
-      <data key="d1">2</data>
-      <data key="d2">ixia.ixnetwork-vnf.0.1</data>
-      <data key="d3">output</data>
-      <data key="d4">vdu01</data>
-      <data key="d5">iface</data>
-    </node>
     <node id="vnf_ixnetwork:br-mgmt">
-      <data key="d2">ixia.ixnetwork-vnf.0.1</data>
+      <data key="d0">bridge</data>
+      <data key="d1">ixia.ixnetwork-vnf.0.1</data>
+      <data key="d2">2</data>
       <data key="d3">br-mgmt</data>
-      <data key="d1">2</data>
-      <data key="d5">bridge</data>
-    </node>
-    <node id="vnf_ixload:br-mgmt">
-      <data key="d2">ixia.ixload-vnf.0.1</data>
-      <data key="d3">br-mgmt</data>
-      <data key="d1">2</data>
-      <data key="d5">bridge</data>
-    </node>
-    <node id="mgmt">
-      <data key="d0">ixia</data>
-      <data key="d1">0</data>
-      <data key="d2" />
-      <data key="d3">mgmt</data>
-      <data key="d4">ixia.service-descriptor.ixia.0.1</data>
-      <data key="d5">br-iface</data>
-    </node>
-    <node id="vnf_ixbreakpoint:br-mgmt">
-      <data key="d2">ixia.ixbreakpoint-vnf.0.1</data>
-      <data key="d3">br-mgmt</data>
-      <data key="d1">2</data>
-      <data key="d5">bridge</data>
     </node>
     <node id="vnf_ixbreakpoint:vdu01">
-      <data key="d0">vdu01</data>
-      <data key="d1">2</data>
-      <data key="d2">ixia.ixbreakpoint-vnf.0.1</data>
-      <data key="d3">output</data>
       <data key="d4">vdu01</data>
-      <data key="d5">iface</data>
-    </node>
-    <node id="input">
-      <data key="d0">ixia</data>
-      <data key="d1">0</data>
-      <data key="d2" />
-      <data key="d3">input</data>
-      <data key="d4">ixia.service-descriptor.ixia.0.1</data>
-      <data key="d5">iface</data>
+      <data key="d2">2</data>
+      <data key="d5">vdu01</data>
+      <data key="d3">mgmt</data>
+      <data key="d0">br-iface</data>
+      <data key="d1">ixia.ixbreakpoint-vnf.0.1</data>
     </node>
     <node id="vnf_ixnetwork:cpmgmt">
-      <data key="d0">ixnetwork-vnf</data>
-      <data key="d1">1</data>
-      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
-      <data key="d3">cpmgmt</data>
       <data key="d4">ixia.ixnetwork-vnf.0.1</data>
-      <data key="d5">br-iface</data>
+      <data key="d2">1</data>
+      <data key="d5">ixnetwork-vnf</data>
+      <data key="d3">cpmgmt</data>
+      <data key="d0">br-iface</data>
+      <data key="d1">ixia.service-descriptor.ixia.0.1</data>
+    </node>
+    <node id="vnf_ixbreakpoint:br-mgmt">
+      <data key="d0">bridge</data>
+      <data key="d1">ixia.ixbreakpoint-vnf.0.1</data>
+      <data key="d2">2</data>
+      <data key="d3">br-mgmt</data>
     </node>
     <node id="br-mgmt">
-      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d0">bridge</data>
+      <data key="d1">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d2">1</data>
       <data key="d3">br-mgmt</data>
-      <data key="d1">1</data>
-      <data key="d5">bridge</data>
-    </node>
-    <node id="vnf_ixload:cpmgmt">
-      <data key="d0">ixload-vnf</data>
-      <data key="d1">1</data>
-      <data key="d2">ixia.service-descriptor.ixia.0.1</data>
-      <data key="d3">cpmgmt</data>
-      <data key="d4">ixia.ixload-vnf.0.1</data>
-      <data key="d5">br-iface</data>
     </node>
     <node id="vnf_ixload:vdu01">
-      <data key="d0">vdu01</data>
-      <data key="d1">2</data>
-      <data key="d2">ixia.ixload-vnf.0.1</data>
-      <data key="d3">inout</data>
       <data key="d4">vdu01</data>
-      <data key="d5">iface</data>
+      <data key="d2">2</data>
+      <data key="d5">vdu01</data>
+      <data key="d3">mgmt</data>
+      <data key="d0">br-iface</data>
+      <data key="d1">ixia.ixload-vnf.0.1</data>
     </node>
-    <edge source="output" target="vnf_ixbreakpoint:cpoutput">
-      <data key="d6">ixbreakpoint-2-output</data>
-      <data key="d7">iface</data>
-      <data key="d8">1</data>
-    </edge>
-    <edge source="vnf_ixload:cpoutput" target="vnf_ixbreakpoint:cpoutput">
-      <data key="d6">ixload-2-ixbreakpoint</data>
-      <data key="d7">iface</data>
-      <data key="d8">1</data>
-    </edge>
-    <edge source="vnf_ixload:cpoutput" target="vnf_ixnetwork:cpoutput">
-      <data key="d6">ixnetwork-2-ixload</data>
-      <data key="d7">iface</data>
-      <data key="d8">1</data>
-    </edge>
-    <edge source="vnf_ixload:cpoutput" target="vnf_ixload:vdu01">
-      <data key="d6">output</data>
-      <data key="d8">1</data>
-      <data key="d7">iface</data>
-    </edge>
-    <edge source="vnf_ixnetwork:cpoutput" target="input">
-      <data key="d6">input-2-ixnetwork</data>
-      <data key="d7">iface</data>
-      <data key="d8">1</data>
-    </edge>
-    <edge source="vnf_ixnetwork:cpoutput" target="vnf_ixnetwork:vdu01">
-      <data key="d6">output</data>
-      <data key="d8">1</data>
-      <data key="d7">iface</data>
-    </edge>
-    <edge source="vnf_ixbreakpoint:cpmgmt" target="br-mgmt">
-      <data key="d6">mgmt</data>
-      <data key="d8">1</data>
-      <data key="d7">br-iface</data>
-    </edge>
-    <edge source="vnf_ixbreakpoint:cpmgmt" target="vnf_ixbreakpoint:br-mgmt">
-      <data key="d6">mgmt</data>
-    </edge>
-    <edge source="vnf_ixbreakpoint:cpoutput" target="vnf_ixbreakpoint:vdu01">
-      <data key="d6">output</data>
-      <data key="d8">1</data>
-      <data key="d7">iface</data>
-    </edge>
-    <edge source="vnf_ixnetwork:vdu01" target="vnf_ixnetwork:br-mgmt">
+    <node id="vnf_ixload:br-mgmt">
+      <data key="d0">bridge</data>
+      <data key="d1">ixia.ixload-vnf.0.1</data>
+      <data key="d2">2</data>
+      <data key="d3">br-mgmt</data>
+    </node>
+    <node id="output">
+      <data key="d4">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d2">0</data>
+      <data key="d5">ixia</data>
+      <data key="d3">output</data>
+      <data key="d0">iface</data>
+      <data key="d1" />
+    </node>
+    <node id="input">
+      <data key="d4">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d2">0</data>
+      <data key="d5">ixia</data>
+      <data key="d3">input</data>
+      <data key="d0">iface</data>
+      <data key="d1" />
+    </node>
+    <node id="vnf_ixbreakpoint:cpmgmt">
+      <data key="d4">ixia.ixbreakpoint-vnf.0.1</data>
+      <data key="d2">1</data>
+      <data key="d5">ixbreakpoint-vnf</data>
+      <data key="d3">cpmgmt</data>
+      <data key="d0">br-iface</data>
+      <data key="d1">ixia.service-descriptor.ixia.0.1</data>
+    </node>
+    <node id="vnf_ixnetwork:cpoutput">
+      <data key="d4">ixia.ixnetwork-vnf.0.1</data>
+      <data key="d2">1</data>
+      <data key="d5">ixnetwork-vnf</data>
+      <data key="d3">cpoutput</data>
+      <data key="d0">iface</data>
+      <data key="d1">ixia.service-descriptor.ixia.0.1</data>
+    </node>
+    <node id="vnf_ixload:cpmgmt">
+      <data key="d4">ixia.ixload-vnf.0.1</data>
+      <data key="d2">1</data>
+      <data key="d5">ixload-vnf</data>
+      <data key="d3">cpmgmt</data>
+      <data key="d0">br-iface</data>
+      <data key="d1">ixia.service-descriptor.ixia.0.1</data>
+    </node>
+    <node id="vnf_ixbreakpoint:cpoutput">
+      <data key="d4">ixia.ixbreakpoint-vnf.0.1</data>
+      <data key="d2">1</data>
+      <data key="d5">ixbreakpoint-vnf</data>
+      <data key="d3">cpoutput</data>
+      <data key="d0">iface</data>
+      <data key="d1">ixia.service-descriptor.ixia.0.1</data>
+    </node>
+    <node id="mgmt">
+      <data key="d4">ixia.service-descriptor.ixia.0.1</data>
+      <data key="d2">0</data>
+      <data key="d5">ixia</data>
+      <data key="d3">mgmt</data>
+      <data key="d0">br-iface</data>
+      <data key="d1" />
+    </node>
+    <node id="vnf_ixload:cpoutput">
+      <data key="d4">ixia.ixload-vnf.0.1</data>
+      <data key="d2">1</data>
+      <data key="d5">ixload-vnf</data>
+      <data key="d3">cpoutput</data>
+      <data key="d0">iface</data>
+      <data key="d1">ixia.service-descriptor.ixia.0.1</data>
+    </node>
+    <node id="vnf_ixnetwork:vdu01">
+      <data key="d4">vdu01</data>
+      <data key="d2">2</data>
+      <data key="d5">vdu01</data>
+      <data key="d3">mgmt</data>
+      <data key="d0">br-iface</data>
+      <data key="d1">ixia.ixnetwork-vnf.0.1</data>
+    </node>
+    <edge source="vnf_ixnetwork:br-mgmt" target="vnf_ixnetwork:vdu01">
       <data key="d6">mgmt</data>
     </edge>
     <edge source="vnf_ixnetwork:br-mgmt" target="vnf_ixnetwork:cpmgmt">
       <data key="d6">mgmt</data>
     </edge>
-    <edge source="vnf_ixload:br-mgmt" target="vnf_ixload:vdu01">
+    <edge source="vnf_ixbreakpoint:vdu01" target="vnf_ixbreakpoint:br-mgmt">
+      <data key="d6">mgmt</data>
+    </edge>
+    <edge source="vnf_ixbreakpoint:vdu01" target="vnf_ixbreakpoint:cpoutput">
+      <data key="d7">iface</data>
+      <data key="d8">1</data>
+      <data key="d6">output</data>
+    </edge>
+    <edge source="vnf_ixnetwork:cpmgmt" target="br-mgmt">
+      <data key="d7">br-iface</data>
+      <data key="d8">1</data>
+      <data key="d6">mgmt</data>
+    </edge>
+    <edge source="vnf_ixbreakpoint:br-mgmt" target="vnf_ixbreakpoint:cpmgmt">
+      <data key="d6">mgmt</data>
+    </edge>
+    <edge source="br-mgmt" target="vnf_ixbreakpoint:cpmgmt">
+      <data key="d7">br-iface</data>
+      <data key="d8">1</data>
+      <data key="d6">mgmt</data>
+    </edge>
+    <edge source="br-mgmt" target="mgmt">
+      <data key="d7">br-iface</data>
+      <data key="d8">1</data>
+      <data key="d6">mgmt</data>
+    </edge>
+    <edge source="br-mgmt" target="vnf_ixload:cpmgmt">
+      <data key="d7">br-iface</data>
+      <data key="d8">1</data>
+      <data key="d6">mgmt</data>
+    </edge>
+    <edge source="vnf_ixload:vdu01" target="vnf_ixload:cpoutput">
+      <data key="d7">iface</data>
+      <data key="d8">1</data>
+      <data key="d6">output</data>
+    </edge>
+    <edge source="vnf_ixload:vdu01" target="vnf_ixload:br-mgmt">
       <data key="d6">mgmt</data>
     </edge>
     <edge source="vnf_ixload:br-mgmt" target="vnf_ixload:cpmgmt">
       <data key="d6">mgmt</data>
     </edge>
-    <edge source="mgmt" target="br-mgmt">
-      <data key="d6">mgmt</data>
+    <edge source="output" target="vnf_ixbreakpoint:cpoutput">
+      <data key="d7">iface</data>
       <data key="d8">1</data>
-      <data key="d7">br-iface</data>
+      <data key="d6">ixbreakpoint-2-output</data>
     </edge>
-    <edge source="vnf_ixbreakpoint:br-mgmt" target="vnf_ixbreakpoint:vdu01">
-      <data key="d6">mgmt</data>
-    </edge>
-    <edge source="vnf_ixnetwork:cpmgmt" target="br-mgmt">
-      <data key="d6">mgmt</data>
+    <edge source="input" target="vnf_ixnetwork:cpoutput">
+      <data key="d7">iface</data>
       <data key="d8">1</data>
-      <data key="d7">br-iface</data>
+      <data key="d6">input-2-ixnetwork</data>
     </edge>
-    <edge source="br-mgmt" target="vnf_ixload:cpmgmt">
-      <data key="d6">mgmt</data>
+    <edge source="vnf_ixnetwork:cpoutput" target="vnf_ixload:cpoutput">
+      <data key="d7">iface</data>
       <data key="d8">1</data>
-      <data key="d7">br-iface</data>
+      <data key="d6">ixnetwork-2-ixload</data>
+    </edge>
+    <edge source="vnf_ixnetwork:cpoutput" target="vnf_ixnetwork:vdu01">
+      <data key="d7">iface</data>
+      <data key="d8">1</data>
+      <data key="d6">output</data>
+    </edge>
+    <edge source="vnf_ixbreakpoint:cpoutput" target="vnf_ixload:cpoutput">
+      <data key="d7">iface</data>
+      <data key="d8">1</data>
+      <data key="d6">ixload-2-ixbreakpoint</data>
     </edge>
   </graph>
 </graphml>

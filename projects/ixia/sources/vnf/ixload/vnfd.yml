@@ -13,8 +13,8 @@ description: "Ixia Load VNF - https://wiki.plugtests.net/NFV-PLUGTESTS/index.php
 ##
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/IxiaKeysight/Ixia_Virtual_Test_Appliance_8.40_EA_KVM.qcow2"
-#    vm_image: "http://www.google.com"
+#    vm_image: "http://172.22.1.1/NFVPLU3/VNFs/IxiaKeysight/Ixia_Virtual_Test_Appliance_8.40_EA_KVM.qcow2"
+    vm_image: "http://www.google.com"
     vm_image_format: "qcow2"
     vm_image_md5: '00898e43557d1af7837b486322e2c7f6'
     resource_requirements:
@@ -30,7 +30,10 @@ virtual_deployment_units:
       - id: "mgmt"
         interface: "ipv4"
         type: "management"
-      - id: "inout"
+      - id: "input"
+        interface: "ipv4"
+        type: "internal"
+      - id: "output"
         interface: "ipv4"
         type: "internal"
 
@@ -46,8 +49,13 @@ virtual_links:
   - id: "output"
     connectivity_type: "E-Line"
     connection_points_reference:
-      - "vdu01:inout"
+      - "vdu01:output"
       - "cpoutput"
+  - id: "input"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:input"
+      - "cpinput"
 
 ##
 ## The VNF connection points to the
@@ -58,6 +66,9 @@ connection_points:
     interface: "ipv4"
     type: "management"
   - id: "cpoutput"
+    interface: "ipv4"
+    type: "internal"
+  - id: "cpinput"
     interface: "ipv4"
     type: "internal"
 

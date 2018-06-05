@@ -1,7 +1,7 @@
 descriptor_version: "1.0"
 vendor: "ixia.service-descriptor"
 name: "ixia"
-version: "0.1"
+version: "0.5"
 author: "Miguel Mesquita"
 description: "Ixia package Descriptor"
 
@@ -51,55 +51,55 @@ virtual_links:
     connectivity_type: "E-Line"
     connection_points_reference:
       - "input"
-      - "vnf_ixnetwork:cpoutput"
+      - "vnf_ixnetwork:cpinput"
   - id: "ixnetwork-2-ixload"
     connectivity_type: "E-Line"
     connection_points_reference:
       - "vnf_ixnetwork:cpoutput"
-      - "vnf_ixload:cpoutput"
+      - "vnf_ixload:cpinput"
   - id: "ixload-2-ixbreakpoint"
     connectivity_type: "E-Line"
     connection_points_reference:
       - "vnf_ixload:cpoutput"
-      - "vnf_ixbreakpoint:cpoutput"
+      - "vnf_ixbreakpoint:cpinput"
   - id: "ixbreakpoint-2-output"
     connectivity_type: "E-Line"
     connection_points_reference:
       - "vnf_ixbreakpoint:cpoutput"
       - "output"
 
-forwarding_graphs:
-  - fg_id: "fg01"
-    number_of_endpoints: 2
-    number_of_virtual_links: 5
-    constituent_virtual_links:
-      - "mgmt"
-      - "input-2-ixnetwork"
-      - "ixnetwork-2-ixload"
-      - "ixload-2-ixbreakpoint"
-      - "ixbreakpoint-2-output"
-    constituent_vnfs:
-      - "vnf_ixnetwork"
-      - "vnf_ixload"
-      - "vnf_ixbreakpoint"
-    network_forwarding_paths:
-      - fp_id: "fg01:fp01"
-        policy: "none"
-        connection_points:
-          - connection_point_ref: "input"
-            position: 1
-          - connection_point_ref: "vnf_ixnetwork:cpoutput"
-            position: 2
-          - connection_point_ref: "vnf_ixnetwork:cpoutput"
-            position: 3
-          - connection_point_ref: "vnf_ixload:cpoutput"
-            position: 4
-          - connection_point_ref: "vnf_ixload:cpoutput"
-            position: 5
-          - connection_point_ref: "vnf_ixbreakpoint:cpoutput"
-            position: 6
-          - connection_point_ref: "vnf_ixbreakpoint:cpoutput"
-            position: 7
-          - connection_point_ref: "output"
-            position: 8
-
+#forwarding_graphs:
+#  - fg_id: "fg01"
+#    number_of_endpoints: 2
+#    number_of_virtual_links: 5
+#    constituent_virtual_links:
+#      - "mgmt"
+#      - "input-2-ixnetwork"
+#      - "ixnetwork-2-ixload"
+#      - "ixload-2-ixbreakpoint"
+#      - "ixbreakpoint-2-output"
+#    constituent_vnfs:
+#      - "vnf_ixnetwork"
+#      - "vnf_ixload"
+#      - "vnf_ixbreakpoint"
+#    network_forwarding_paths:
+#      - fp_id: "fg01:fp01"
+#        policy: "none"
+#        connection_points:
+#          - connection_point_ref: "input"
+#            position: 1
+#          - connection_point_ref: "vnf_ixnetwork:cpoutput"
+#            position: 2
+#          - connection_point_ref: "vnf_ixnetwork:cpoutput"
+#            position: 3
+#          - connection_point_ref: "vnf_ixload:cpoutput"
+#            position: 4
+#          - connection_point_ref: "vnf_ixload:cpoutput"
+#            position: 5
+#          - connection_point_ref: "vnf_ixbreakpoint:cpoutput"
+#            position: 6
+#          - connection_point_ref: "vnf_ixbreakpoint:cpoutput"
+#            position: 7
+#          - connection_point_ref: "output"
+#            position: 8
+##

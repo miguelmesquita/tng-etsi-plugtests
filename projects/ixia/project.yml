@@ -4,5 +4,5 @@ package:
   maintainer: Alberto Rocha, Altice Labs (alberto-m-rocha@alticelabs.com)
   name: "etsi-ixia"
   vendor: "keysight"
-  version: "0.5"
+  version: "0.1"
 version: '0.5'
